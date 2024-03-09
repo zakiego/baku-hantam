@@ -16,7 +16,6 @@ export const debates: Debates = [
       "https://twitter.com/lynxluna/status/1765387033026150820",
       "https://twitter.com/gadingnstn/status/1766353424126476406",
       "https://twitter.com/ainunnajib/status/1766385680916328700",
-      "https://twitter.com/gadingnstn/status/1766353424126476406",
     ],
   },
 ];
