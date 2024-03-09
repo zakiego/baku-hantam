@@ -47,13 +47,7 @@ export default function Page({ params }: Props) {
       </div>
 
       <div>
-        <AddButton
-          href={SITE_CONFIG.CREATE_ISSUE(
-            `Tambahkan tweet untuk topik "${debate.title}"`,
-          )}
-        >
-          Tambahkan Tweet
-        </AddButton>
+        <AddButton href={SITE_CONFIG.FORM}>Tambahkan Tweet</AddButton>
       </div>
 
       <div>

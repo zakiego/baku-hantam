@@ -13,11 +13,7 @@ export const Header = () => {
         </p>
 
         <div className="mt-2">
-          <AddButton
-            href={SITE_CONFIG.CREATE_ISSUE("Tambahkan tweet untuk topik baru")}
-          >
-            Tambahkan Tweet
-          </AddButton>
+          <AddButton href={SITE_CONFIG.FORM}>Tambahkan Tweet</AddButton>
         </div>
       </div>
     </div>
