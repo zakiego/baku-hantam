@@ -12,8 +12,8 @@ Untuk menambahkan tweet ke dalam daftar, kamu bisa langsung mengedit file
 Atau kamu bisa mengirimkan tweet yang ingin kamu tambahkan ke dalam daftar
 melalui [GitHub Issues](https://github.com/zakiego/baku-hantam/issues/new)
 
-Bisa juga dengan cara mengirimkan tweet ke saya melalui DM di Twitter
-[@zakiego](https://twitter.com/zakiego)
+Terakhir, bisa juga mengirimkannya melalui Google Form
+([data-pemilu.vercel.app/form](https://data-pemilu.vercel.app/form))
 
 ## Tech Stack
 
