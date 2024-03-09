@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Debat Tech Twitter Indonesia
 
-## Getting Started
+Kumpulan debat oleh para _techbro_ di jagat Twitter Indonesia.
 
-First, run the development server:
+## Bagaimana cara berkontribusi?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Untuk menambahkan tweet ke dalam daftar, kamu bisa langsung mengedit file
+[tweets.ts](/src/lib/tweets.ts) dan membuat _pull request_
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Atau kamu bisa mengirimkan tweet yang ingin kamu tambahkan ke dalam daftar
+melalui [GitHub Issues](https://github.com/zakiego/baku-hantam/issues/new)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Bisa juga dengan cara mengirimkan tweet ke saya melalui DM di Twitter
+[@zakiego](https://twitter.com/zakiego)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Tech Stack
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [React Tweet](https://react-tweet.vercel.app/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vercel](https://vercel.com/)
