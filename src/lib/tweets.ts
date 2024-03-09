@@ -18,4 +18,13 @@ export const debates: Debates = [
       "https://twitter.com/ainunnajib/status/1766385680916328700",
     ],
   },
+  {
+    title: "PHP di Project Pemerintah",
+    slug: "php-project-pemerintah",
+    description: "Serba-serbi PHP di project pemerintah.",
+    tweets: [
+      "https://twitter.com/papanberjalan/status/1760865776423379040",
+      "https://twitter.com/papanberjalan/status/1764999095767425221",
+    ],
+  },
 ];
