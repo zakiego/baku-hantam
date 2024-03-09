@@ -1,4 +1,4 @@
-type Data = {
+export type Debates = {
   title: string;
   slug: string;
   description: string;
@@ -6,7 +6,7 @@ type Data = {
 }[];
 
 // Note: silakan tambahkan data sesuai dengan format yang sudah ada
-export const debates: Data = [
+export const debates: Debates = [
   {
     title: "Config 2 Jam",
     slug: "config-2-jam",
@@ -16,6 +16,7 @@ export const debates: Data = [
       "https://twitter.com/lynxluna/status/1765387033026150820",
       "https://twitter.com/gadingnstn/status/1766353424126476406",
       "https://twitter.com/ainunnajib/status/1766385680916328700",
+      "https://twitter.com/gadingnstn/status/1766353424126476406",
     ],
   },
 ];

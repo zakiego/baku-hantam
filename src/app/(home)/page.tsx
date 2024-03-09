@@ -1,3 +1,4 @@
+import { AvatarTweets } from "@/app/@components/avatar";
 import { AddButton } from "@/app/@components/button";
 import { Container } from "@/components/container";
 import { Header } from "@/components/header";
@@ -17,7 +18,9 @@ export default function Page() {
                 key={debate.title}
                 className="p-4 my-4 bg-white rounded-md shadow-md cursor-pointer"
               >
-                <h1 className="text-lg font-bold">{debate.title}</h1>
+                <AvatarTweets tweets={debate.tweets} />
+
+                <h1 className="text-lg font-bold mt-2">{debate.title}</h1>
                 <p className="mt-2 text-xs text-gray-500">
                   {debate.description}
                 </p>
