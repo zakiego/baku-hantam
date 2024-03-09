@@ -20,10 +20,6 @@ export async function generateStaticParams() {
   }));
 }
 
-interface Params {
-  id: string;
-}
-
 export default function Page({ params }: Props) {
   const debate = debates.find((debate) => debate.slug === params.id);
 

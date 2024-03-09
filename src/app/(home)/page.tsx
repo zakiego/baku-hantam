@@ -2,11 +2,10 @@ import { AddButton } from "@/app/@components/button";
 import { Container } from "@/components/container";
 import { Header } from "@/components/header";
 import { Navbar } from "@/components/navbar";
-import { SITE_CONFIG } from "@/lib/const";
 import { debates } from "@/lib/tweets";
 import Link from "next/link";
 
-export default function Home() {
+export default function Page() {
   return (
     <div>
       <Header />
