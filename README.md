@@ -13,7 +13,7 @@ Atau kamu bisa mengirimkan tweet yang ingin kamu tambahkan ke dalam daftar
 melalui [GitHub Issues](https://github.com/zakiego/baku-hantam/issues/new)
 
 Terakhir, bisa juga mengirimkannya melalui Google Form
-([data-pemilu.vercel.app/form](https://data-pemilu.vercel.app/form))
+([baku-hantam.vercel.app/form](https://baku-hantam.vercel.app/form))
 
 ## Tech Stack
 
