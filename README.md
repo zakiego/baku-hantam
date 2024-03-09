@@ -4,6 +4,8 @@ Kumpulan debat oleh para _techbro_ di jagat Twitter Indonesia.
 
 ## Bagaimana cara berkontribusi?
 
+> Yang ditambahkan adalah link dari tweet
+
 Untuk menambahkan tweet ke dalam daftar, kamu bisa langsung mengedit file
 [tweets.ts](/src/lib/tweets.ts) dan membuat _pull request_
 
