@@ -27,4 +27,10 @@ export const debates: Debates = [
       "https://twitter.com/papanberjalan/status/1764999095767425221",
     ],
   },
+  {
+    title: "ORM vs Non-ORM",
+    slug: "orm-vs-non-orm",
+    description: "Pertarungan antara ORM dan Non-ORM.",
+    tweets: ["https://twitter.com/papanberjalan/status/1758656922834907523"],
+  },
 ];
