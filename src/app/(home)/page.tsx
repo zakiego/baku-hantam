@@ -14,10 +14,7 @@ export default function Page() {
         {debates.map(async (debate, id) => {
           return (
             <Link key={debate.title} href={`/topic/${debate.slug}`}>
-              <div
-                key={debate.title}
-                className="p-4 my-4 bg-white rounded-md shadow-md cursor-pointer"
-              >
+              <div className="p-4 my-4 bg-white rounded-md shadow-md cursor-pointer">
                 <AvatarTweets tweets={debate.tweets} />
 
                 <h1 className="text-lg font-bold mt-2">{debate.title}</h1>
