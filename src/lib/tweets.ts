@@ -108,4 +108,14 @@ export const debates: Debates = [
       "https://twitter.com/azamuddin91/status/1672777437208522752", // Jun 25, 2023 · 8:23 AM
     ],
   },
+  {
+    title: "AI Pencuri Karya",
+    slug: "ai-pencuri-karya",
+    description: "Apakah AI mencuri hasil karya pelaku industri kreatif?",
+    tweets: [
+      "https://twitter.com/aria_ghora/status/1724106609885061428", // Nov 14, 2023 · 11:47 AM
+      "https://twitter.com/aria_ghora/status/1752517633017319545", // Jan 31, 2024 · 9:22 AM
+      "https://twitter.com/mctosima_/status/1752584416655016403", // Jan 31, 2024 · 1:47 PM
+    ],
+  },
 ];
