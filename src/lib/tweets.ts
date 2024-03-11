@@ -33,6 +33,7 @@ export const debates: Debates = [
       "https://twitter.com/itsfaqih_/status/1766402190242123961", // 4:54 PM · Mar 9, 2024
       "https://twitter.com/glendmaatita/status/1766417693677433131", // 5:56 PM · Mar 9, 2024
       "https://twitter.com/gadingnstn/status/1766487332528504988", // 10:32 PM · Mar 9, 2024
+      "https://twitter.com/_fikri_auliya/status/1766434423535554922", // Mar 9, 2024 · 7:02 PM
       "https://twitter.com/itsfaqih_/status/1766483265224151166", // 10:16 PM · Mar 9, 2024
 
       "https://twitter.com/GilangHamidy/status/1766762321710322142", // Mar 10, 2024 · 4:45 PM
@@ -63,7 +64,13 @@ export const debates: Debates = [
       "https://twitter.com/papanberjalan/status/1764999095767425221", // Mar 5, 2024 · 7:59 PM
       "https://twitter.com/papanberjalan/status/1765200273025429871", // Mar 6, 2024 · 9:18 AM
       "https://twitter.com/nusendra_/status/1765242091511111767", // Mar 6, 2024 · 12:04 AM
+
       "https://twitter.com/papanberjalan/status/1766651163515216049", // Mar 10, 2024 · 10:23 AM
+      "https://twitter.com/papanberjalan/status/1766784180749480368", //  Mar 10, 2024 · 7:12 PM
+      "https://twitter.com/papanberjalan/status/1766794287524815167", // Mar 10, 2024 · 7:52 PM
+      "https://twitter.com/itsfaqih_/status/1766796143017828701", // Mar 10, 2024 · 7:00 PM
+      "https://twitter.com/_fikri_auliya/status/1766850432129986853", // Mar 10, 2024 · 10:35 PM
+
       "https://twitter.com/ibnux/status/1767030242869490035", // Mar 11, 2024 · 10:30 AM
       "https://twitter.com/papanberjalan/status/1767071098821337332", // Mar 11, 2024 · 1:12 PM
       "https://twitter.com/ibnux/status/1767032763428028453", // Mar 11, 2024 · 11:40 AM ·
