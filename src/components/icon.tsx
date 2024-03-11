@@ -49,3 +49,21 @@ export const ChevronLeftIcon = ({ className }: { className: string }) => (
     />
   </svg>
 );
+
+export const ArrowRightIcon = ({ className }: { className: string }) => (
+  // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    className={clsx(className)}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+    />
+  </svg>
+);

@@ -1,5 +1,5 @@
-import { AvatarTweets } from "@/app/@components/avatar";
-import { AddButton } from "@/app/@components/button";
+import { AvatarTweets } from "@/app/(home)/avatar";
+import { AddButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { Header } from "@/components/header";
 import { Navbar } from "@/components/navbar";

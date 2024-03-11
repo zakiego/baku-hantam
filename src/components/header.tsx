@@ -1,4 +1,5 @@
-import { AddButton, DeleteButton } from "@/app/@components/button";
+import { AddButton, DeleteButton } from "@/components/button";
+import { ArrowRightIcon } from "@/components/icon";
 import { SITE_CONFIG } from "@/lib/const";
 
 export const Header = () => {
@@ -12,6 +13,18 @@ export const Header = () => {
           Nikmati debatnya, serap ilmunya, abaikan lainnya
         </p>
 
+        <div className="mt-8 flex justify-center space-x-3">
+          <div className="mt-2">
+            <a
+              href="/leaderboard"
+              // white button, text-black, bg-balance-600 on hover
+              className="text-sm text-balance-600 hover:bg-balance-600  border border-balance-600 px-4 py-2 rounded-md"
+            >
+              Lihat Leaderboard
+              <ArrowRightIcon className="inline-block w-4 h-4 ml-2" />
+            </a>
+          </div>
+        </div>
         <div className="mt-8 flex justify-center space-x-3">
           <div className="mt-2">
             <AddButton href={SITE_CONFIG.FORM}>Tambahkan Tweet</AddButton>

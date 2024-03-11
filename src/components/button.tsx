@@ -1,4 +1,5 @@
-import { MinusIcon, PlusIcon } from "@/components/icon";
+import { ChevronLeftIcon, MinusIcon, PlusIcon } from "@/components/icon";
+import Link from "next/link";
 
 export const AddButton = ({
   href,
@@ -27,5 +28,20 @@ export const DeleteButton = ({
       <MinusIcon className="h-3 w-3" />
       <span className="ml-1">{children}</span>
     </a>
+  );
+};
+
+export const BackButton = ({
+  href,
+}: {
+  href: string;
+}) => {
+  return (
+    <Link href={href}>
+      <div className="mb-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm items-center cursor-pointer hover:bg-gray-100">
+        <ChevronLeftIcon className="w-2 h-2" />
+        <span className="ml-2">Kembali</span>
+      </div>
+    </Link>
   );
 };

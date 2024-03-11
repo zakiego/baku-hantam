@@ -1,4 +1,4 @@
-import { AddButton } from "@/app/@components/button";
+import { AddButton, BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { ChevronLeftIcon } from "@/components/icon";
 import { TweetCard } from "@/components/tweet";
@@ -30,12 +30,7 @@ export default function Page({ params }: Props) {
 
   return (
     <Container className="py-10 relative">
-      <Link href="/">
-        <div className="mb-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm items-center cursor-pointer hover:bg-gray-100">
-          <ChevronLeftIcon className="w-2 h-2" />
-          <span className="ml-2">Kembali</span>
-        </div>
-      </Link>
+      <BackButton href="/" />
 
       <div>
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-balance">
