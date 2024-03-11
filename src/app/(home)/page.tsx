@@ -7,11 +7,15 @@ import { debates } from "@/lib/tweets";
 import Link from "next/link";
 
 export default function Page() {
+  const sortByMostTweets = debates.sort((a, b) => {
+    return b.tweets.length - a.tweets.length;
+  });
+
   return (
     <div>
       <Header />
       <Container>
-        {debates.map(async (debate, id) => {
+        {sortByMostTweets.map(async (debate, id) => {
           return (
             <Link key={debate.title} href={`/topic/${debate.slug}`}>
               <div className="p-4 my-4 bg-white rounded-md shadow-md cursor-pointer">
