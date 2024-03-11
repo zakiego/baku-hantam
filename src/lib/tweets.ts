@@ -11,7 +11,7 @@ export const debates: Debates = [
     title: "Config 2 Jam",
     slug: "config-2-jam",
     description:
-      "Dimulai dari pembahasan tentang konfigurasi, lalu berlanjut ke topik yang lebih seru.",
+      "Dimulai dari pembahasan tentang konfigurasi, lalu berlanjut ke topik yang lebih seru",
     tweets: [
       "https://twitter.com/lynxluna/status/1765387033026150820", // 9:40 PM · Mar 6, 2024
 
@@ -34,6 +34,9 @@ export const debates: Debates = [
       "https://twitter.com/glendmaatita/status/1766417693677433131", // 5:56 PM · Mar 9, 2024
       "https://twitter.com/gadingnstn/status/1766487332528504988", // 10:32 PM · Mar 9, 2024
       "https://twitter.com/itsfaqih_/status/1766483265224151166", // 10:16 PM · Mar 9, 2024
+
+      "https://twitter.com/GilangHamidy/status/1766762321710322142", // Mar 10, 2024 · 4:45 PM
+      "https://twitter.com/Maz_Ipan/status/1766783140906033176", // Mar 10, 2024 · 6:08 PM
     ],
   },
   {
@@ -54,10 +57,11 @@ export const debates: Debates = [
   {
     title: "PHP di Project Pemerintah",
     slug: "php-project-pemerintah",
-    description: "Serba-serbi PHP di project pemerintah.",
+    description: "Serba-serbi PHP di project pemerintah",
     tweets: [
-      "https://twitter.com/papanberjalan/status/1760865776423379040",
-      "https://twitter.com/papanberjalan/status/1764999095767425221",
+      "https://twitter.com/papanberjalan/status/1760865776423379040", // Feb 23, 2024 · 10:14 AM
+      "https://twitter.com/papanberjalan/status/1764999095767425221", // Mar 5, 2024 · 7:59 PM
+      "https://twitter.com/papanberjalan/status/1765200273025429871", // Mar 6, 2024 · 9:18 AM
     ],
   },
   {
@@ -67,6 +71,36 @@ export const debates: Debates = [
     tweets: [
       "https://twitter.com/qepo_s/status/1702571153657852077", // 1:32 PM · Sep 15, 2023
       "https://twitter.com/papanberjalan/status/1758656922834907523",
+    ],
+  },
+  {
+    title: "OOP vs Functional Programming",
+    slug: "oop-vs-fp",
+    description: "Pertarungan antara OOP dan Functional Programming",
+    tweets: [
+      "https://twitter.com/lynxluna/status/1670279219270791170", // Jun 18, 2023 · 10:56 AM
+    ],
+  },
+  {
+    title: "Matematika anak SD",
+    slug: "matematika-anak-sd",
+    description: "Cukupkah matematika anak SD untuk menjadi programmer?",
+    tweets: [
+      "https://twitter.com/azamuddin91/status/1658698623587340288", // May 17, 2023 · 11:59 PM
+      "https://twitter.com/azamuddin91/status/1658976885999808513",
+      "https://twitter.com/pveyes/status/1658971075856986113", // May 18, 2023 · 6:01 AM ·
+      "https://twitter.com/ibamarief/status/1658865294499278848", // May 18, 2023 · 11:01 AM
+      "https://twitter.com/GilangHamidy/status/1659095860687372288",
+      "https://twitter.com/oianas_/status/1658988297514016768",
+      "https://twitter.com/aria_ghora/status/1658871096194797568",
+      "https://twitter.com/gofrendiasgard/status/1659147104424714242",
+      "https://twitter.com/petrabarus/status/1659361668110118913",
+      "https://twitter.com/primawansatrio/status/1659800774740971520",
+      "https://twitter.com/__r17x/status/1659064806471770113",
+      "https://twitter.com/AleamsBarra/status/1659161199672692738",
+      "https://twitter.com/azamuddin91/status/1658989261318922241", // May 18, 2023 · 7:13 AM
+      "https://twitter.com/imrenagi/status/1672726303269609472", // Jun 25, 2023 · 5:00 AM
+      "https://twitter.com/azamuddin91/status/1672777437208522752", // Jun 25, 2023 · 8:23 AM
     ],
   },
 ];
