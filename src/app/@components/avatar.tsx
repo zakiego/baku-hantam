@@ -25,7 +25,7 @@ export const AvatarTweets = async (props: Props) => {
     <div className="flex -space-x-2 overflow-hidden">
       {listAvatars.map((avatar, id) => (
         <img
-          key={avatar}
+          key={`${id}-${avatar}`}
           className="inline-block h-8 w-8xxw rounded-full ring-2 ring-white"
           src={avatar}
           alt=""
