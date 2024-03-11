@@ -1,4 +1,4 @@
-import { AddButton } from "@/app/@components/button";
+import { AddButton, DeleteButton } from "@/app/@components/button";
 import { SITE_CONFIG } from "@/lib/const";
 
 export const Header = () => {
@@ -12,8 +12,16 @@ export const Header = () => {
           Nikmati debatnya, serap ilmunya, abaikan lainnya
         </p>
 
-        <div className="mt-2">
-          <AddButton href={SITE_CONFIG.FORM}>Tambahkan Tweet</AddButton>
+        <div className="mt-8 flex justify-center space-x-3">
+          <div className="mt-2">
+            <AddButton href={SITE_CONFIG.FORM}>Tambahkan Tweet</AddButton>
+          </div>
+          {/* REQUEST DELETE BUTTON */}
+          <div className="mt-2">
+            <DeleteButton href={SITE_CONFIG.DELETE_FORM}>
+              Request Hapus Tweet
+            </DeleteButton>
+          </div>
         </div>
       </div>
     </div>

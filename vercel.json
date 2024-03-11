@@ -5,6 +5,10 @@
       "source": "/form",
       "destination": "https://forms.gle/T4zYi5LByGkUDFp49",
       "permanent": false
+    },
+    {
+      "source": "/delete",
+      "destination": "https://forms.gle/K4VBxPjB2B4gmPjc6"
     }
   ]
 }

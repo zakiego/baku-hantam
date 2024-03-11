@@ -1,6 +1,5 @@
 import type { Debates } from "@/lib/tweets";
-import { getTweetId } from "@/lib/utils";
-import { getTweet } from "react-tweet/api";
+import { getTweetId, getTweetWithCache } from "@/lib/utils";
 
 interface Props {
   tweets: Debates[number]["tweets"];
@@ -10,7 +9,7 @@ export const AvatarTweets = async (props: Props) => {
   const { tweets } = props;
 
   const listTweets = await Promise.all(
-    tweets.map(async (tweet, id) => await getTweet(getTweetId(tweet))),
+    tweets.map(async (tweet, id) => await getTweetWithCache(getTweetId(tweet))),
   );
 
   const listAvatars = listTweets
