@@ -1,3 +1,5 @@
+import { debates } from "@/lib/tweets";
+
 export const getTweetId = (tweet: string) => {
   const tweetId = tweet.split("/").pop();
 
@@ -18,4 +20,18 @@ export const getTweetWithCache = async (id: string) => {
   }
 
   return response.json();
+};
+
+export const checkDuplicateTweets = () => {
+  const duplicateTweets = debates
+    .flatMap((d) => {
+      return d.tweets.map((t) => t);
+    })
+    .filter((value, index, self) => {
+      return self.indexOf(value) !== index;
+    });
+
+  if (duplicateTweets.length > 0) {
+    console.error("Duplicate tweets", duplicateTweets);
+  }
 };

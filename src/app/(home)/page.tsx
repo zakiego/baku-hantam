@@ -4,9 +4,12 @@ import { Container } from "@/components/container";
 import { Header } from "@/components/header";
 import { Navbar } from "@/components/navbar";
 import { debates } from "@/lib/tweets";
+import { checkDuplicateTweets } from "@/lib/utils";
 import Link from "next/link";
 
 export default function Page() {
+  checkDuplicateTweets();
+
   const sortByMostTweets = debates.sort((a, b) => {
     return b.tweets.length - a.tweets.length;
   });
