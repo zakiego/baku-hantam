@@ -23,7 +23,9 @@ import type { Tweet } from "react-tweet/api";
 const getTweet = unstable_cache(
   async (id: string) => _getTweet(id),
   ["tweet"],
-  { revalidate: 3600 * 24 },
+  {
+    revalidate: 3600 * 24, // 24 hours
+  },
 );
 
 // export const MyTweet = ({
