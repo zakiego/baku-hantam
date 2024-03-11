@@ -20,7 +20,6 @@ export const debates: Debates = [
       "https://twitter.com/glendmaatita/status/1765899052913508505", // 7:34 AM · Mar 8, 2024
       "https://twitter.com/itsfaqih_/status/1765946838828650749", // 10:45 AM · Mar 8, 2024
       "https://twitter.com/spacerocc/status/1766125691844870249", // 10:35 PM · Mar 8, 2024
-      "https://twitter.com/justmas2biasa/status/1766032926523957700", // 4:27 PM · Mar 8, 2024
 
       "https://twitter.com/lynxluna/status/1766246109574557887", // 6:34 AM · Mar 9, 2024
       "https://twitter.com/effendii_/status/1766313916936986873", // 11:03 AM · Mar 9, 2024
