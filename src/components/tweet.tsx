@@ -1,5 +1,4 @@
 import { unstable_cache } from "next/cache";
-import { getTweet as _getTweet } from "react-tweet/api";
 import {
   TweetSkeleton,
   EmbeddedTweet,
@@ -19,9 +18,10 @@ import {
 } from "react-tweet";
 import { Suspense } from "react";
 import type { Tweet } from "react-tweet/api";
+import { getTweetWithCache } from "@/lib/utils";
 
 const getTweet = unstable_cache(
-  async (id: string) => _getTweet(id),
+  async (id: string) => getTweetWithCache(id),
   ["tweet"],
   {
     revalidate: 3600 * 24, // 24 hours
