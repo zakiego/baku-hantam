@@ -1,5 +1,6 @@
 import { AddButton } from "@/app/@components/button";
 import { Container } from "@/components/container";
+import { ChevronLeftIcon } from "@/components/icon";
 import { TweetCard } from "@/components/tweet";
 import { SITE_CONFIG } from "@/lib/const";
 import { debates } from "@/lib/tweets";
@@ -30,8 +31,8 @@ export default function Page({ params }: Props) {
   return (
     <Container className="py-10 relative">
       <Link href="/">
-        <div className="text-xs inline-flex items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-balance hover:bg-opacity-75 bg-gray-900 mb-6">
-          <ChevronLeftIcon className="w-2.5 h-2.5" />
+        <div className="mb-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm items-center cursor-pointer hover:bg-gray-100">
+          <ChevronLeftIcon className="w-2 h-2" />
           <span className="ml-2">Kembali</span>
         </div>
       </Link>
@@ -62,21 +63,3 @@ export default function Page({ params }: Props) {
     </Container>
   );
 }
-
-const ChevronLeftIcon = ({ className }: { className?: string }) => (
-  // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className={clsx("w-6 h-6", className)}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15.75 19.5 8.25 12l7.5-7.5"
-    />
-  </svg>
-);
