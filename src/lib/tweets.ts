@@ -62,6 +62,11 @@ export const debates: Debates = [
       "https://twitter.com/papanberjalan/status/1760865776423379040", // Feb 23, 2024 · 10:14 AM
       "https://twitter.com/papanberjalan/status/1764999095767425221", // Mar 5, 2024 · 7:59 PM
       "https://twitter.com/papanberjalan/status/1765200273025429871", // Mar 6, 2024 · 9:18 AM
+      "https://twitter.com/nusendra_/status/1765242091511111767", // Mar 6, 2024 · 12:04 AM
+      "https://twitter.com/papanberjalan/status/1766651163515216049", // Mar 10, 2024 · 10:23 AM
+      "https://twitter.com/ibnux/status/1767030242869490035", // Mar 11, 2024 · 10:30 AM
+      "https://twitter.com/papanberjalan/status/1767071098821337332", // Mar 11, 2024 · 1:12 PM
+      "https://twitter.com/ibnux/status/1767032763428028453", // Mar 11, 2024 · 11:40 AM ·
     ],
   },
   {
