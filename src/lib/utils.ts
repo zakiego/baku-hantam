@@ -124,6 +124,7 @@ export const groupByUsername = async () => {
   const addProfile = (await Promise.all(addProfilePromises)) as {
     username: string;
     tweets: { url: string; topic: string }[];
+    rank: number;
     profile?: {
       id_str: string;
       name: string;
@@ -135,5 +136,13 @@ export const groupByUsername = async () => {
     };
   }[];
 
-  return addProfile;
+  const sortByRankAndAlphabet = addProfile.sort((a, b) => {
+    if (a.rank === b.rank) {
+      return a.username.localeCompare(b.username);
+    }
+
+    return a.rank - b.rank;
+  });
+
+  return sortByRankAndAlphabet;
 };
