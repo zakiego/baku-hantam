@@ -15,7 +15,7 @@ export const debates: Debates = [
     tweets: [
       "https://twitter.com/lynxluna/status/1765387033026150820", // 9:40 PM · Mar 6, 2024
 
-      "https://twitter.com/gadingnstn/status/1765730273121931653", // 8:24 PM · Mar 7, 2024
+      // "https://twitter.com/gadingnstn/status/1765730273121931653", // 8:24 PM · Mar 7, 2024
 
       "https://twitter.com/glendmaatita/status/1765899052913508505", // 7:34 AM · Mar 8, 2024
       "https://twitter.com/itsfaqih_/status/1765946838828650749", // 10:45 AM · Mar 8, 2024
@@ -24,14 +24,14 @@ export const debates: Debates = [
       "https://twitter.com/lynxluna/status/1766246109574557887", // 6:34 AM · Mar 9, 2024
       "https://twitter.com/effendii_/status/1766313916936986873", // 11:03 AM · Mar 9, 2024
       "https://twitter.com/Aoohan/status/1766341607056679223", // 12:53 PM · Mar 9, 2024
-      "https://twitter.com/gadingnstn/status/1766353424126476406", // 1:40 PM · Mar 9, 2024
+      // "https://twitter.com/gadingnstn/status/1766353424126476406", // 1:40 PM · Mar 9, 2024
       "https://twitter.com/maulanafikri455/status/1766357540206772724", // 1:57 PM · Mar 9, 2024
       "https://twitter.com/ainunnajib/status/1766385680916328700", // 3:48 PM · Mar 9, 2024
       "https://twitter.com/lynxluna/status/1766393800069648691", // 4:21 PM · Mar 9, 2024
-      "https://twitter.com/gadingnstn/status/1766399528142283007", // 4:44 PM · Mar 9, 2024
+      // "https://twitter.com/gadingnstn/status/1766399528142283007", // 4:44 PM · Mar 9, 2024
       "https://twitter.com/itsfaqih_/status/1766402190242123961", // 4:54 PM · Mar 9, 2024
       "https://twitter.com/glendmaatita/status/1766417693677433131", // 5:56 PM · Mar 9, 2024
-      "https://twitter.com/gadingnstn/status/1766487332528504988", // 10:32 PM · Mar 9, 2024
+      // "https://twitter.com/gadingnstn/status/1766487332528504988", // 10:32 PM · Mar 9, 2024
       "https://twitter.com/_fikri_auliya/status/1766434423535554922", // Mar 9, 2024 · 7:02 PM
       "https://twitter.com/itsfaqih_/status/1766483265224151166", // 10:16 PM · Mar 9, 2024
 
@@ -45,13 +45,13 @@ export const debates: Debates = [
     description: "Sepenting itukah performance 300ms?",
     tweets: [
       "https://twitter.com/lwastuargo/status/1711903789660451030", // 7:37 AM · Oct 11, 2023
-      "https://twitter.com/gadingnstn/status/1711912952444620975", // 8:13 AM · Oct 11, 2023
+      // "https://twitter.com/gadingnstn/status/1711912952444620975", // 8:13 AM · Oct 11, 2023
       "https://twitter.com/zakkafm/status/1711917377858969683", // 8:31 AM · Oct 11, 2023
       "https://twitter.com/ibamarief/status/1711918572061249625", // 8:36 AM · Oct 11, 2023
-      "https://twitter.com/gadingnstn/status/1711928763892789718", // 9:16 AM · Oct 11, 2023
+      // "https://twitter.com/gadingnstn/status/1711928763892789718", // 9:16 AM · Oct 11, 2023
       "https://twitter.com/lynxluna/status/1711935480869392650", // 9:43 AM · Oct 11, 2023
-      "https://twitter.com/gadingnstn/status/1711949064215187786", // 10:37 AM · Oct 11, 2023
-      "https://twitter.com/gadingnstn/status/1712055544675180921", // 5:40 PM · Oct 11, 2023
+      // "https://twitter.com/gadingnstn/status/1711949064215187786", // 10:37 AM · Oct 11, 2023
+      // "https://twitter.com/gadingnstn/status/1712055544675180921", // 5:40 PM · Oct 11, 2023
     ],
   },
   {
@@ -122,6 +122,27 @@ export const debates: Debates = [
       "https://twitter.com/aria_ghora/status/1724106609885061428", // Nov 14, 2023 · 11:47 AM
       "https://twitter.com/aria_ghora/status/1752517633017319545", // Jan 31, 2024 · 9:22 AM
       "https://twitter.com/mctosima_/status/1752584416655016403", // Jan 31, 2024 · 1:47 PM
+    ],
+  },
+  {
+    title: "Penting Nggak Kuliah?",
+    slug: "penting-nggak-kuliah",
+    description: "Apakah kuliah itu penting?",
+    tweets: [
+      "https://twitter.com/primawansatrio/status/1767123216198435284", // Mar 11, 2024 · 4:39 PM
+      "https://twitter.com/itsfaqih_/status/1767133774062690463", // Mar 11, 2024 · 5:21 PM
+      "https://twitter.com/effendii_/status/1767154915892490416", // Mar 11, 2024 · 6:45 PM
+      "https://twitter.com/adith_wp/status/1767206766264389686", // Mar 11, 2024 · 10:11 PM
+    ],
+  },
+  {
+    title: "Bootcamp VS Lulusan IT",
+    slug: "bootcamp-vs-lulusan-it",
+    description: "Pertarungan antara bootcamp dan lulusan IT",
+    tweets: [
+      "https://twitter.com/imrenagi/status/1593768309337776129", // Nov 19, 2022 · 7:49 AM
+      "https://twitter.com/strike_bravo_b/status/1594164029354020865", // Nov 20, 2022 · 10:01 AM
+      "https://twitter.com/imrenagi/status/1647602548017188865", // Apr 16, 2023 · 9:07 PM
     ],
   },
 ];
