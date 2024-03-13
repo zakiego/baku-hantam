@@ -73,6 +73,8 @@ export const debates: Debates = [
       "https://twitter.com/ibnux/status/1767030242869490035", // Mar 11, 2024 · 10:30 AM
       "https://twitter.com/papanberjalan/status/1767071098821337332", // Mar 11, 2024 · 1:12 PM
       "https://twitter.com/ibnux/status/1767032763428028453", // Mar 11, 2024 · 11:40 AM ·
+
+      "https://twitter.com/papanberjalan/status/1767826082525569098", // Mar 13, 2024 · 3:12 PM ✅
     ],
   },
   {
@@ -143,6 +145,16 @@ export const debates: Debates = [
       "https://twitter.com/imrenagi/status/1593768309337776129", // Nov 19, 2022 · 7:49 AM
       "https://twitter.com/strike_bravo_b/status/1594164029354020865", // Nov 20, 2022 · 10:01 AM
       "https://twitter.com/imrenagi/status/1647602548017188865", // Apr 16, 2023 · 9:07 PM
+    ],
+  },
+  {
+    title: "SQL vs NoSQL",
+    slug: "sql-vs-nosql",
+    description: "Pertarungan antara SQL dan NoSQL",
+    tweets: [
+      "https://twitter.com/papanberjalan/status/1755014790429458818", // Feb 7, 2024 · 6:45 AM ✅
+      "https://twitter.com/ainunnajib/status/1755035799668838610", // Feb 7, 2024 · 8:08 AM ✅
+      "https://twitter.com/lynxluna/status/1767798718366109983", // Mar 13, 2024 · 1:23 PM ✅
     ],
   },
 ];
