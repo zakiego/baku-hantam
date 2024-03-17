@@ -17,7 +17,7 @@ const schema = z.object({
 
 const syncTweets = async () => {
   const data = fs.readFileSync("src/lib/tweet/data.json", "utf8");
-  const debates = schema.parse(JSON.parse(data)).data;
+  const debates = schema.parse(JSON.parse(data)).data.reverse();
 
   await dbClient.transaction(async (trx) => {
     // -- SET ALL TWEET SHOW TO FALSE
@@ -112,4 +112,7 @@ const syncTweets = async () => {
   process.exit(0);
 };
 
-syncTweets();
+syncTweets().catch((e) => {
+  console.error(`Error syncing tweets: ${e.message}`);
+  process.exit(1);
+});
