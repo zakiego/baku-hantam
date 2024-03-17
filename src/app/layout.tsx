@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { debates } from "@/lib/tweets";
+import { dbQuery } from "@/lib/db/query";
 
 const jakartaSans = Plus_Jakarta_Sans({ display: "swap", subsets: ["latin"] });
 
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
   description: "Nikmati kumpulan debat teknologi di Twitter Indonesia",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -22,8 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={jakartaSans.className}>
         <div data-theme="light">
-          <Navbar />
-          {children}
+          {/* <Navbar /> */}
+          {/* {children} */}
+          <p>Under construction. Please come back later.</p>
         </div>
       </body>
     </html>
