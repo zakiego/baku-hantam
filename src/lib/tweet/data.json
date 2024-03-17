@@ -52,7 +52,10 @@
         "https://twitter.com/ibnux/status/1767030242869490035",
         "https://twitter.com/papanberjalan/status/1767071098821337332",
         "https://twitter.com/ibnux/status/1767032763428028453",
-        "https://twitter.com/papanberjalan/status/1767826082525569098"
+        "https://twitter.com/papanberjalan/status/1767826082525569098",
+        "https://twitter.com/papanberjalan/status/1767946911540277401",
+        "https://twitter.com/papanberjalan/status/1767900850188677295",
+        "https://twitter.com/insomnius_/status/1768267162903556326"
       ]
     },
     {
@@ -145,6 +148,30 @@
         "https://twitter.com/Aoohan/status/1768223423204036730",
         "https://twitter.com/sapelauu/status/1768224364271665383",
         "https://twitter.com/adith_wp/status/1768107763048325332"
+      ]
+    },
+    {
+      "title": "Software Engineer Digantikan AI?",
+      "slug": "software-engineer-digantikan-ai",
+      "description": "Apakah software engineer akan digantikan oleh AI?",
+      "tweets": [
+        "https://twitter.com/Aoohan/status/1767901906599547372",
+        "https://twitter.com/rvywr/status/1767908409649848463",
+        "https://twitter.com/YehezGun/status/1767905955684270402",
+        "https://twitter.com/pveyes/status/1768133761747873935",
+        "https://twitter.com/lynxluna/status/1768112708774420853"
+      ]
+    },
+    {
+      "title": "React vs Svelte",
+      "slug": "react-vs-svelte",
+      "description": "Svelte lebih mudah dibandingkan React, benarkah?",
+      "tweets": [
+        "https://twitter.com/putupurema/status/1768646742113935711",
+        "https://twitter.com/achmadmahardi/status/1769160477098303581",
+        "https://twitter.com/__r17x/status/1769265127923339758",
+        "https://twitter.com/lynxluna/status/1769266085000572953",
+        "https://twitter.com/__r17x/status/1768965612469162203"
       ]
     }
   ]
