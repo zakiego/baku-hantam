@@ -1,13 +1,12 @@
 import { AddButton, BackButton } from "@/components/button";
 import { Container } from "@/components/container";
-import { ChevronLeftIcon } from "@/components/icon";
 import { TweetCard } from "@/components/tweet";
 import { SITE_CONFIG } from "@/lib/const";
-import { debates } from "@/lib/tweets";
-import { getTweetId } from "@/lib/utils";
-import clsx from "clsx";
-import Link from "next/link";
+import { tweetQuery } from "@/lib/tweet/query";
 import { notFound } from "next/navigation";
+import type { Tweet } from "react-tweet/api";
+
+export const dynamic = "force-static";
 
 interface Props {
   params: {
@@ -16,15 +15,18 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return debates.map((item) => ({
-    id: item.slug,
+  const topics = await tweetQuery.topicList();
+
+  return topics.map((item) => ({
+    id: item.id,
   }));
 }
 
-export default function Page({ params }: Props) {
-  const debate = debates.find((debate) => debate.slug === params.id);
+export default async function Page({ params }: Props) {
+  const topicDetail = await tweetQuery.topicDetail(params.id);
+  const tweets = await tweetQuery.tweetsByTopic(params.id);
 
-  if (!debate) {
+  if (!topicDetail) {
     notFound();
   }
 
@@ -34,11 +36,11 @@ export default function Page({ params }: Props) {
 
       <div>
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-balance">
-          {debate.title}
+          {topicDetail?.title}
         </h2>
 
         <p className="mt-2 leading-8 text-gray-600 text-balance text-sm">
-          {debate.description}
+          {topicDetail?.description}
         </p>
       </div>
 
@@ -47,12 +49,8 @@ export default function Page({ params }: Props) {
       </div>
 
       <div>
-        {debate.tweets.map((tweet, id) => {
-          {
-            const tweetId = getTweetId(tweet);
-
-            return <TweetCard key={tweetId} tweetId={tweetId} />;
-          }
+        {tweets.map((tweet, id) => {
+          return <TweetCard key={tweet.id} tweet={tweet.data as Tweet} />;
         })}
       </div>
     </Container>

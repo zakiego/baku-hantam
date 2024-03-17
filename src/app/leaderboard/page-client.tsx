@@ -3,12 +3,12 @@
 import { CardLeaderboard } from "@/app/leaderboard/cards";
 import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
-import type { GroupedByUsername } from "@/lib/types";
+import type { tweetQuery } from "@/lib/tweet/query";
 import { useQueryState } from "nuqs";
 import { useMemo } from "react";
 
 interface Props {
-  data: GroupedByUsername;
+  data: Awaited<ReturnType<typeof tweetQuery.leaderBoard>>;
 }
 
 export default function PageClientLeaderbord(props: Props) {
@@ -21,7 +21,7 @@ export default function PageClientLeaderbord(props: Props) {
       return data;
     }
 
-    return data.filter((user) => user.username.includes(query));
+    return data.filter((user) => user.profile.screen_name?.includes(query));
   }, [data, query]);
 
   return (
@@ -45,8 +45,8 @@ export default function PageClientLeaderbord(props: Props) {
       </div>
 
       <div className="mt-4">
-        {filteredData.map((user, id) => (
-          <CardLeaderboard key={user.username} user={user} />
+        {filteredData.map((item, id) => (
+          <CardLeaderboard key={item.profile.screen_name} user={item} />
         ))}
       </div>
     </Container>

@@ -1,0 +1,150 @@
+{
+  "$schema": "https://baku-hantam.vercel.app/schema.json",
+  "data": [
+    {
+      "title": "Config 2 Jam",
+      "slug": "config-2-jam",
+      "description": "Dimulai dari pembahasan tentang konfigurasi, lalu berlanjut ke topik yang lebih seru",
+      "tweets": [
+        "https://twitter.com/lynxluna/status/1765387033026150820",
+        "https://twitter.com/glendmaatita/status/1765899052913508505",
+        "https://twitter.com/itsfaqih_/status/1765946838828650749",
+        "https://twitter.com/spacerocc/status/1766125691844870249",
+        "https://twitter.com/lynxluna/status/1766246109574557887",
+        "https://twitter.com/effendii_/status/1766313916936986873",
+        "https://twitter.com/Aoohan/status/1766341607056679223",
+        "https://twitter.com/maulanafikri455/status/1766357540206772724",
+        "https://twitter.com/ainunnajib/status/1766385680916328700",
+        "https://twitter.com/lynxluna/status/1766393800069648691",
+        "https://twitter.com/itsfaqih_/status/1766402190242123961",
+        "https://twitter.com/glendmaatita/status/1766417693677433131",
+        "https://twitter.com/_fikri_auliya/status/1766434423535554922",
+        "https://twitter.com/GilangHamidy/status/1766762321710322142",
+        "https://twitter.com/itsfaqih_/status/1766483265224151166"
+      ]
+    },
+    {
+      "title": "Performance 300ms",
+      "slug": "300ms",
+      "description": "Sepenting itukah performance 300ms?",
+      "tweets": [
+        "https://twitter.com/lwastuargo/status/1711903789660451030",
+        "https://twitter.com/zakkafm/status/1711917377858969683",
+        "https://twitter.com/ibamarief/status/1711918572061249625",
+        "https://twitter.com/lynxluna/status/1711935480869392650"
+      ]
+    },
+    {
+      "title": "PHP di Project Pemerintah",
+      "slug": "php-project-pemerintah",
+      "description": "Serba-serbi PHP di project pemerintah",
+      "tweets": [
+        "https://twitter.com/papanberjalan/status/1760865776423379040",
+        "https://twitter.com/papanberjalan/status/1764999095767425221",
+        "https://twitter.com/papanberjalan/status/1765200273025429871",
+        "https://twitter.com/nusendra_/status/1765242091511111767",
+        "https://twitter.com/papanberjalan/status/1766651163515216049",
+        "https://twitter.com/papanberjalan/status/1766784180749480368",
+        "https://twitter.com/papanberjalan/status/1766794287524815167",
+        "https://twitter.com/itsfaqih_/status/1766796143017828701",
+        "https://twitter.com/_fikri_auliya/status/1766850432129986853",
+        "https://twitter.com/ibnux/status/1767030242869490035",
+        "https://twitter.com/papanberjalan/status/1767071098821337332",
+        "https://twitter.com/ibnux/status/1767032763428028453",
+        "https://twitter.com/papanberjalan/status/1767826082525569098"
+      ]
+    },
+    {
+      "title": "ORM vs Non-ORM",
+      "slug": "orm-vs-non-orm",
+      "description": "Pertarungan antara ORM dan Non-ORM.",
+      "tweets": [
+        "https://twitter.com/qepo_s/status/1702571153657852077",
+        "https://twitter.com/papanberjalan/status/1758656922834907523"
+      ]
+    },
+    {
+      "title": "OOP vs Functional Programming",
+      "slug": "oop-vs-fp",
+      "description": "Pertarungan antara OOP dan Functional Programming",
+      "tweets": ["https://twitter.com/lynxluna/status/1670279219270791170"]
+    },
+    {
+      "title": "Matematika anak SD",
+      "slug": "matematika-anak-sd",
+      "description": "Cukupkah matematika anak SD untuk menjadi programmer?",
+      "tweets": [
+        "https://twitter.com/azamuddin91/status/1658698623587340288",
+        "https://twitter.com/azamuddin91/status/1658976885999808513",
+        "https://twitter.com/pveyes/status/1658971075856986113",
+        "https://twitter.com/ibamarief/status/1658865294499278848",
+        "https://twitter.com/GilangHamidy/status/1659095860687372288",
+        "https://twitter.com/oianas_/status/1658988297514016768",
+        "https://twitter.com/aria_ghora/status/1658871096194797568",
+        "https://twitter.com/gofrendiasgard/status/1659147104424714242",
+        "https://twitter.com/petrabarus/status/1659361668110118913",
+        "https://twitter.com/primawansatrio/status/1659800774740971520",
+        "https://twitter.com/__r17x/status/1659064806471770113",
+        "https://twitter.com/AleamsBarra/status/1659161199672692738",
+        "https://twitter.com/azamuddin91/status/1658989261318922241",
+        "https://twitter.com/imrenagi/status/1672726303269609472",
+        "https://twitter.com/azamuddin91/status/1672777437208522752"
+      ]
+    },
+    {
+      "title": "AI Pencuri Karya",
+      "slug": "ai-pencuri-karya",
+      "description": "Apakah AI mencuri hasil karya pelaku industri kreatif?",
+      "tweets": [
+        "https://twitter.com/aria_ghora/status/1724106609885061428",
+        "https://twitter.com/aria_ghora/status/1752517633017319545",
+        "https://twitter.com/mctosima_/status/1752584416655016403"
+      ]
+    },
+    {
+      "title": "Penting Nggak Kuliah?",
+      "slug": "penting-nggak-kuliah",
+      "description": "Apakah kuliah itu penting?",
+      "tweets": [
+        "https://twitter.com/primawansatrio/status/1767123216198435284",
+        "https://twitter.com/itsfaqih_/status/1767133774062690463",
+        "https://twitter.com/effendii_/status/1767154915892490416",
+        "https://twitter.com/adith_wp/status/1767206766264389686"
+      ]
+    },
+    {
+      "title": "Bootcamp VS Lulusan IT",
+      "slug": "bootcamp-vs-lulusan-it",
+      "description": "Pertarungan antara bootcamp dan lulusan IT",
+      "tweets": [
+        "https://twitter.com/imrenagi/status/1593768309337776129",
+        "https://twitter.com/strike_bravo_b/status/1594164029354020865",
+        "https://twitter.com/imrenagi/status/1647602548017188865"
+      ]
+    },
+    {
+      "title": "SQL vs NoSQL",
+      "slug": "sql-vs-nosql",
+      "description": "Pertarungan antara SQL dan NoSQL",
+      "tweets": [
+        "https://twitter.com/papanberjalan/status/1755014790429458818",
+        "https://twitter.com/ainunnajib/status/1755035799668838610",
+        "https://twitter.com/lynxluna/status/1767798718366109983"
+      ]
+    },
+    {
+      "title": "NPM Install Engineer",
+      "slug": "npm-install-engineer",
+      "description": "Engineer yang hanya bisa `npm install`",
+      "tweets": [
+        "https://twitter.com/lynxluna/status/1767965882041643356",
+        "https://twitter.com/thomaskatalis/status/1767967096980517243",
+        "https://twitter.com/lynxluna/status/1767970397620941027",
+        "https://twitter.com/papanberjalan/status/1768034401882177557",
+        "https://twitter.com/Aoohan/status/1768223423204036730",
+        "https://twitter.com/sapelauu/status/1768224364271665383",
+        "https://twitter.com/adith_wp/status/1768107763048325332"
+      ]
+    }
+  ]
+}

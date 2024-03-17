@@ -18,15 +18,15 @@ import {
 } from "react-tweet";
 import { Suspense } from "react";
 import type { Tweet } from "react-tweet/api";
-import { getTweetWithCache } from "@/lib/utils";
+// import { getTweetWithCache } from "@/lib/utils";
 
-const getTweet = unstable_cache(
-  async (id: string) => getTweetWithCache(id),
-  ["tweet"],
-  {
-    revalidate: 3600 * 24, // 24 hours
-  },
-);
+// const getTweet = unstable_cache(
+//   async (id: string) => getTweetWithCache(id),
+//   ["tweet"],
+//   {
+//     revalidate: 3600 * 24, // 24 hours
+//   },
+// );
 
 // const getTweet = getTweetWithCache;
 
@@ -50,9 +50,8 @@ const getTweet = unstable_cache(
 //   );
 // };
 
-const TweetWrapper = async ({ id }: { id: string }) => {
+const TweetWrapper = async ({ tweet }: { tweet: Tweet | null }) => {
   try {
-    const tweet = await getTweet(id);
     return tweet ? <EmbeddedTweet tweet={tweet} /> : <TweetNotFound />;
     // return tweet ? <MyTweet tweet={tweet} /> : <TweetNotFound />;
   } catch (error) {
@@ -61,11 +60,11 @@ const TweetWrapper = async ({ id }: { id: string }) => {
   }
 };
 
-export const TweetCard = ({ tweetId }: { tweetId: string }) => {
+export const TweetCard = ({ tweet }: { tweet: Tweet }) => {
   return (
     <Suspense fallback={<TweetSkeleton />}>
       <div className="my-class">
-        <TweetWrapper id={tweetId} />
+        <TweetWrapper tweet={tweet} />
       </div>
     </Suspense>
   );

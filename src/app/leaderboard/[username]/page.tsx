@@ -2,10 +2,12 @@ import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
-import { debates } from "@/lib/tweets";
-import { getTweetId } from "@/lib/utils";
+import { tweetQuery } from "@/lib/tweet/query";
 import Link from "next/link";
-import { boolean } from "zod";
+import { notFound } from "next/navigation";
+import type { Tweet } from "react-tweet/api";
+
+export const dynamic = "force-static";
 
 interface Props {
   params: {
@@ -14,30 +16,21 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const listUsernames: string[] = [];
+  const listUser = await tweetQuery.userList();
 
-  debates.map((item) =>
-    item.tweets.map((tweet) => {
-      const username = tweet.split("/")[3];
-      listUsernames.push(username);
-    }),
-  );
-
-  return listUsernames.map((item) => ({
-    username: item,
+  return listUser.map((item) => ({
+    username: item.screen_name,
   }));
 }
 
-export default function Page({ params }: Props) {
-  const debate = debates.filter((debate) =>
-    debate.tweets.some((tweet) => tweet.split("/")[3] === params.username),
-  );
+export default async function Page({ params }: Props) {
+  const data = await tweetQuery.leaderBoardByUser(params.username);
 
-  const listTopic = debate.map((item) => item.slug);
+  if (!data) {
+    notFound();
+  }
 
-  const tweets = debate
-    .flatMap((item) => item.tweets)
-    .filter((item) => item.split("/")[3] === params.username);
+  const listTopic = data.tweets.map((item) => item.topic_id) || [];
 
   return (
     <Container className="py-10 relative">
@@ -51,7 +44,7 @@ export default function Page({ params }: Props) {
         </h2>
       </div>
 
-      <p className="mt-2 text-sm text-gray-500">{debate.length} tweets</p>
+      <p className="mt-2 text-sm text-gray-500">{data.tweets.length} tweets</p>
 
       <h3 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl text-balance">
         Topic
@@ -64,8 +57,8 @@ export default function Page({ params }: Props) {
         ))}
       </div>
 
-      {tweets.map((item, index) => (
-        <TweetCard key={item} tweetId={getTweetId(item)} />
+      {data.tweets.map((item, index) => (
+        <TweetCard key={item.id} tweet={item.data as Tweet} />
       ))}
     </Container>
   );

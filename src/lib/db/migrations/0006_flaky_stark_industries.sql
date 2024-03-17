@@ -1,0 +1,1 @@
+ALTER TABLE "tweet" ADD COLUMN "show" boolean;

@@ -1,20 +1,17 @@
-import { Tag } from "@/components/tag";
-import { TweetCard } from "@/components/tweet";
-import type { GroupedByUsername } from "@/lib/types";
-import { getTweetId } from "@/lib/utils";
+import type { tweetQuery } from "@/lib/tweet/query";
 import Link from "next/link";
 
 interface Props {
-  user: GroupedByUsername[number];
+  user: Awaited<ReturnType<typeof tweetQuery.leaderBoard>>[number];
 }
 
 export const CardLeaderboard = (props: Props) => {
   const { user } = props;
 
   return (
-    <Link href={`/leaderboard/${user.username}`}>
+    <Link href={`/leaderboard/${user.profile.screen_name}`}>
       <div
-        key={user.username}
+        key={user.profile.screen_name}
         className="p-4 my-4 bg-white rounded-md shadow-md"
       >
         <div className="flex items-center">
@@ -27,14 +24,14 @@ export const CardLeaderboard = (props: Props) => {
           {user.profile?.profile_image_url_https ? (
             <img
               src={user.profile?.profile_image_url_https || ""}
-              aria-label={user.profile?.name || user.username}
+              aria-label={user.profile?.screen_name || ""}
               className="w-12 h-12 rounded-full"
             />
           ) : (
             <div className="w-12 h-12 rounded-full bg-gray-200" />
           )}
           <div className="ml-4">
-            <h3 className="text-lg font-bold">@{user.username}</h3>
+            <h3 className="text-lg font-bold">@{user.profile.screen_name}</h3>
 
             <p className="text-xs text-gray-500">{user.tweets.length} tweets</p>
           </div>
