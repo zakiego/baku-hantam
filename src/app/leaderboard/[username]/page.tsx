@@ -30,7 +30,11 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  const listTopic = data.tweets.map((item) => item.topic_id) || [];
+  const listTopic =
+    data.tweets
+      .map((item) => item.topic_id)
+      // filter duplicate
+      .filter((value, index, self) => self.indexOf(value) === index) || [];
 
   return (
     <Container className="py-10 relative">
