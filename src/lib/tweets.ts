@@ -157,4 +157,18 @@ export const debates: Debates = [
       "https://twitter.com/lynxluna/status/1767798718366109983", // Mar 13, 2024 · 1:23 PM ✅
     ],
   },
+  {
+    title: "NPM Install Engineer",
+    slug: "npm-install-engineer",
+    description: "Engineer yang hanya bisa `npm install`",
+    tweets: [
+      "https://twitter.com/lynxluna/status/1767965882041643356",
+      "https://twitter.com/thomaskatalis/status/1767967096980517243",
+      "https://twitter.com/lynxluna/status/1767970397620941027",
+      "https://twitter.com/papanberjalan/status/1768034401882177557",
+      "https://twitter.com/Aoohan/status/1768223423204036730",
+      "https://twitter.com/sapelauu/status/1768224364271665383",
+      "https://twitter.com/adith_wp/status/1768107763048325332",
+    ],
+  },
 ];
