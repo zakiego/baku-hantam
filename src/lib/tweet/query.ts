@@ -1,5 +1,5 @@
 import { dbClient, dbSchema } from "@/lib/db";
-import { asc, desc, eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 
 const home = async () => {
   const users = await dbClient.query.user.findMany();
