@@ -17,12 +17,12 @@ export default async function Page() {
             <Link key={item.topic.id} href={`/topic/${item.topic.id}`}>
               <div className="p-4 my-4 bg-white rounded-md shadow-md cursor-pointer">
                 <div className="flex -space-x-2 overflow-hidden">
-                  {item.users.map((user, id) => (
+                  {item.users.map((avatar, id) => (
                     <img
-                      key={`${id}-${user.id}`}
+                      key={`${id}-${avatar}`}
                       className="inline-block h-8 w-8xxw rounded-full ring-2 ring-white"
-                      src={user.profile_image_url_https as string}
-                      alt={`${id}-${user.name}`}
+                      src={avatar as string}
+                      alt=""
                     />
                   ))}
                 </div>

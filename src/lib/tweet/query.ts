@@ -1,5 +1,6 @@
 import { dbClient, dbSchema } from "@/lib/db";
 import { asc, eq } from "drizzle-orm";
+import type { Tweet } from "react-tweet/api";
 
 const home = async () => {
   const users = await dbClient.query.user.findMany();
@@ -19,13 +20,15 @@ const home = async () => {
       topic: topic,
       tweets: tweetsThisTopic,
       users: tweetsThisTopic
-        .map((tweet) => {
-          return users.find((user) => user.id === tweet.user_id);
+        .flatMap((item) => {
+          const tweet = item.data as Tweet;
+          const sender = tweet.user.profile_image_url_https;
+          const quoted = tweet.quoted_tweet?.user.profile_image_url_https;
+
+          return [sender, quoted];
         })
         // filter duplicate
-        .filter(
-          (value, index, self) => self.indexOf(value) === index,
-        ) as typeof users,
+        .filter((value, index, self) => self.indexOf(value) === index),
     };
   });
 
