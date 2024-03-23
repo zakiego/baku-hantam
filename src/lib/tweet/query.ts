@@ -64,7 +64,7 @@ const topicDetail = async (topicId: string) => {
 const leaderBoard = async () => {
   const users = await dbClient.query.user.findMany();
   const tweets = await dbClient.query.tweet.findMany({
-    where: eq(dbSchema.tweet.show, true),
+    // where: eq(dbSchema.tweet.show, true),
     orderBy: asc(dbSchema.tweet.created_at),
   });
 
@@ -97,6 +97,8 @@ const leaderBoard = async () => {
 
     return user;
   });
+
+  console.log(addRank);
 
   return addRank;
 };
