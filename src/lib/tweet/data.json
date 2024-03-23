@@ -21,7 +21,11 @@
         "https://twitter.com/_fikri_auliya/status/1766434423535554922",
         "https://twitter.com/GilangHamidy/status/1766762321710322142",
         "https://twitter.com/itsfaqih_/status/1766483265224151166",
-        "https://twitter.com/Maz_Ipan/status/1766783140906033176"
+        "https://twitter.com/Maz_Ipan/status/1766783140906033176",
+        "https://twitter.com/gadingnstn/status/1765730273121931653",
+        "https://twitter.com/gadingnstn/status/1766353424126476406",
+        "https://twitter.com/gadingnstn/status/1766399528142283007",
+        "https://twitter.com/gadingnstn/status/1766487332528504988"
       ]
     },
     {
@@ -32,7 +36,11 @@
         "https://twitter.com/lwastuargo/status/1711903789660451030",
         "https://twitter.com/zakkafm/status/1711917377858969683",
         "https://twitter.com/ibamarief/status/1711918572061249625",
-        "https://twitter.com/lynxluna/status/1711935480869392650"
+        "https://twitter.com/lynxluna/status/1711935480869392650",
+        "https://twitter.com/gadingnstn/status/1711912952444620975",
+        "https://twitter.com/gadingnstn/status/1711928763892789718",
+        "https://twitter.com/gadingnstn/status/1711949064215187786",
+        "https://twitter.com/gadingnstn/status/1712055544675180921"
       ]
     },
     {
@@ -56,7 +64,13 @@
         "https://twitter.com/papanberjalan/status/1767946911540277401",
         "https://twitter.com/papanberjalan/status/1767900850188677295",
         "https://twitter.com/insomnius_/status/1768267162903556326",
-        "https://twitter.com/boedyirh/status/1758304031720767638"
+        "https://twitter.com/boedyirh/status/1758304031720767638",
+        "https://twitter.com/azamuddin91/status/1771471650007007444",
+        "https://twitter.com/mustafasegf/status/1771534375387332746",
+        "https://twitter.com/papanberjalan/status/1771537652346650729",
+        "https://twitter.com/papanberjalan/status/1771442790632956005",
+        "https://twitter.com/uxdesignerd/status/1771483304534925600",
+        "https://twitter.com/DahlanZein/status/1771500313498857941"
       ]
     },
     {
@@ -174,6 +188,32 @@
         "https://twitter.com/__r17x/status/1769265127923339758",
         "https://twitter.com/lynxluna/status/1769266085000572953",
         "https://twitter.com/__r17x/status/1768965612469162203"
+      ]
+    },
+    {
+      "title": "Axios vs Fetch",
+      "slug": "axios-vs-fetch",
+      "description": "Pertarungan antara Axios dan Fetch",
+      "tweets": [
+        "https://twitter.com/papanberjalan/status/1770619612872495524",
+        "https://twitter.com/lynxluna/status/1770755878376911276",
+        "https://twitter.com/papanberjalan/status/1770761435640975805",
+        "https://twitter.com/liberocks/status/1770765404886987070",
+        "https://twitter.com/papanberjalan/status/1770766787363160067",
+        "https://twitter.com/jfrAziz/status/1770784882580463966",
+        "https://twitter.com/bgwastu/status/1771021576718389274",
+        "https://twitter.com/itsfaqih_/status/1770840628428996877",
+        "https://twitter.com/papanberjalan/status/1770931002380312971"
+      ]
+    },
+    {
+      "title": "Fresh Graduate Tiba-Tiba Jadi Product Manager/Owner",
+      "slug": "fresh-graduate-jadi-product-manager",
+      "description": "Fresh graduate tiba-tiba jadi product manager/owner",
+      "tweets": [
+        "https://twitter.com/dumpanything/status/1771038008298618996",
+        "https://twitter.com/nmonarizqa/status/1771189596212117899",
+        "https://twitter.com/angganalyst/status/1771274887832957234"
       ]
     }
   ]
