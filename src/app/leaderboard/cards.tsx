@@ -12,29 +12,25 @@ export const CardLeaderboard = (props: Props) => {
     <Link href={`/leaderboard/${user.profile.screen_name}`}>
       <div
         key={user.profile.screen_name}
-        className="p-4 my-4 bg-white rounded-md shadow-md"
+        className="px-4 py-6 my-4 bg-white border-b border-b-slate-200"
       >
-        <div className="flex items-center">
-          <div className="pr-5">
-            <span className="text-2xl font-bold text-gray-900">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <span className="text-md text-slate-600 mr-3 font-bold">
               {user.rank}
             </span>
-          </div>
-
-          {user.profile?.profile_image_url_https ? (
-            <img
-              src={user.profile?.profile_image_url_https || ""}
-              aria-label={user.profile?.screen_name || ""}
-              className="w-12 h-12 rounded-full"
-            />
-          ) : (
-            <div className="w-12 h-12 rounded-full bg-gray-200" />
-          )}
-          <div className="ml-4">
+            {user.profile?.profile_image_url_https ? (
+              <img
+                src={user.profile?.profile_image_url_https || ""}
+                aria-label={user.profile?.screen_name || ""}
+                className="w-8 h-8 rounded-full mr-6"
+              />
+            ) : (
+              <div className="w-12 h-12 rounded-full bg-gray-200" />
+            )}
             <h3 className="text-lg font-bold">@{user.profile.screen_name}</h3>
-
-            <p className="text-xs text-gray-500">{user.tweets.length} tweets</p>
           </div>
+          <p className="text-xs text-gray-500">{user.tweets.length} tweets</p>
         </div>
       </div>
     </Link>

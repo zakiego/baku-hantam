@@ -1,6 +1,7 @@
 import { AddButton, DeleteButton } from "@/components/button";
 import { ArrowRightIcon } from "@/components/icon";
 import { SITE_CONFIG } from "@/lib/const";
+import Link from "next/link";
 
 export const Header = () => {
   return (
@@ -15,14 +16,14 @@ export const Header = () => {
 
         <div className="mt-8 flex justify-center space-x-3">
           <div className="mt-2">
-            <a
+            <Link
               href="/leaderboard"
               // white button, text-black, bg-balance-600 on hover
               className="text-sm text-balance-600 hover:bg-balance-600  border border-balance-600 px-4 py-2 rounded-md"
             >
               Lihat Leaderboard
               <ArrowRightIcon className="inline-block w-4 h-4 ml-2" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mt-8 flex justify-center space-x-3">
