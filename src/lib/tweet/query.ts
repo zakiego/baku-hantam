@@ -3,12 +3,13 @@ import { asc, eq } from "drizzle-orm";
 import type { Tweet } from "react-tweet/api";
 
 const home = async () => {
-  const users = await dbClient.query.user.findMany();
-  const topics = await dbClient.query.topic.findMany();
-  const tweets = await dbClient.query.tweet.findMany({
-    where: eq(dbSchema.tweet.show, true),
-    orderBy: asc(dbSchema.tweet.created_at),
-  });
+  const [topics, tweets] = await Promise.all([
+    dbClient.query.topic.findMany(),
+    dbClient.query.tweet.findMany({
+      where: eq(dbSchema.tweet.show, true),
+      orderBy: asc(dbSchema.tweet.created_at),
+    }),
+  ]);
 
   // join users and tweets to topics
   const data = topics.map((topic) => {
@@ -62,11 +63,13 @@ const topicDetail = async (topicId: string) => {
 };
 
 const leaderBoard = async () => {
-  const users = await dbClient.query.user.findMany();
-  const tweets = await dbClient.query.tweet.findMany({
-    // where: eq(dbSchema.tweet.show, true),
-    orderBy: asc(dbSchema.tweet.created_at),
-  });
+  const [users, tweets] = await Promise.all([
+    dbClient.query.user.findMany(),
+    dbClient.query.tweet.findMany({
+      // where: eq(dbSchema.tweet.show, true),
+      orderBy: asc(dbSchema.tweet.created_at),
+    }),
+  ]);
 
   const data = users.map((user) => {
     const tweetsThisUser = tweets.filter((tweet) => tweet.user_id === user.id);
@@ -90,15 +93,13 @@ const leaderBoard = async () => {
     const user = item as UserWithRank;
 
     if (previousUser && previousUser.tweets.length === user.tweets.length) {
-      user.rank = previousUser.rank;
+      user.rank = previousUser.rank + 1;
     } else {
       user.rank = index + 1;
     }
 
     return user;
   });
-
-  console.log(addRank);
 
   return addRank;
 };
