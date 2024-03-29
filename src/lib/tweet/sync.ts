@@ -204,7 +204,7 @@ const sofSyncTweets = async () => {
 const hardSyncTweets = async () => {
   const data = await dbClient.query.tweet.findMany({
     orderBy: desc(dbSchema.tweet.updated_at),
-    limit: 20,
+    limit: 10,
     with: {
       user: true,
     },
