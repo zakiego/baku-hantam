@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Debat Tech Twitter Indonesia",
   },
   description: "Nikmati kumpulan debat teknologi di Twitter Indonesia",
+  keywords: "debat, tech, twitter, indonesia",
 };
 
 export default async function RootLayout({

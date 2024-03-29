@@ -14,6 +14,19 @@ interface Props {
   };
 }
 
+export async function generateMetadata({ params }: Props) {
+  const topic = await tweetQuery.topicDetail(params.id);
+
+  if (!topic) {
+    throw new Error("Topic not found");
+  }
+
+  return {
+    title: `${topic.title}`,
+    description: topic.description,
+  };
+}
+
 export async function generateStaticParams() {
   const topics = await tweetQuery.topicList();
 

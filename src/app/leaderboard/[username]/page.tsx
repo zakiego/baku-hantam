@@ -2,7 +2,9 @@ import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
+import { dbClient, dbSchema } from "@/lib/db";
 import { tweetQuery } from "@/lib/tweet/query";
+import { eq } from "drizzle-orm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Tweet } from "react-tweet/api";
@@ -12,6 +14,21 @@ export const dynamic = "force-static";
 interface Props {
   params: {
     username: string;
+  };
+}
+
+export async function generateMetadata({ params }: Props) {
+  const user = await dbClient.query.user.findFirst({
+    where: eq(dbSchema.user.screen_name, params.username),
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return {
+    title: `@${user.screen_name}`,
+    description: `Tweet by @${user.screen_name} on Debat Tech Twitter Indonesia`,
   };
 }
 
