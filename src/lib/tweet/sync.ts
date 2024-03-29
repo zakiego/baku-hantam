@@ -219,6 +219,8 @@ const syncUsers = async () => {
   for (const user of users) {
     const tweetId = user.tweet[0].id;
 
+    console.log(`Status: Updating user ${user.name} - @${user.screen_name}`);
+
     const resp = await reactTweetAPI(tweetId);
 
     if (!resp) {
