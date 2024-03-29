@@ -22,7 +22,9 @@ export default function PageClientLeaderbord(props: Props) {
       return data;
     }
 
-    return data.filter((user) => user.profile.screen_name?.includes(query));
+    return data.filter((user) =>
+      user.profile.screen_name?.toLowerCase().includes(query.toLowerCase()),
+    );
   }, [data, query]);
 
   return (
