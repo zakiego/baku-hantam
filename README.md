@@ -26,5 +26,9 @@ Terakhir, bisa juga mengirimkannya melalui Google Form
 
 ## Support 🤍
 
+<a href="[https://trakteer.id/bebasidbykini](https://saweria.co/zakiego)" target="_blank">
+  <img src="https://github.com/zakiego/baku-hantam/assets/78015359/5593bc6f-e1ab-4793-9a40-ec6eaab16fc4" alt="Donasi BebasID Trakteer" width="291">
+</a>
+
 Domain disupport oleh
 [@tibudiyanto](https://twitter.com/zakiego/status/1770024412647239687)
