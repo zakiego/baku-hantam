@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getTweetId } from "@/lib/tweet/utils";
 import { getTweet as reactTweetAPI } from "react-tweet/api";
 import { dbClient, dbSchema } from "@/lib/db";
+import { asc } from "drizzle-orm";
 
 const schema = z.object({
   data: z.array(
@@ -207,7 +208,68 @@ const syncTweets = async () => {
   process.exit(0);
 };
 
-syncTweets().catch((e) => {
-  console.error(`Error syncing tweets: ${e.message}`);
-  process.exit(1);
-});
+const syncUsers = async () => {
+  const users = await dbClient.query.user.findMany({
+    with: {
+      tweet: true,
+    },
+    orderBy: asc(dbSchema.user.updated_at),
+  });
+
+  for (const user of users) {
+    const tweetId = user.tweet[0].id;
+
+    const resp = await reactTweetAPI(tweetId);
+
+    if (!resp) {
+      console.error(`Error: Tweet not found ${tweetId}`);
+      continue;
+    }
+
+    // -- INSERT USER
+    await dbClient
+      .insert(dbSchema.user)
+      .values({
+        id: resp.user.id_str,
+        name: resp.user.name,
+        screen_name: resp.user.screen_name,
+        profile_image_url_https: resp.user.profile_image_url_https,
+      })
+      .onConflictDoUpdate({
+        target: dbSchema.user.id,
+        set: {
+          name: resp.user.name,
+          screen_name: resp.user.screen_name,
+          profile_image_url_https: resp.user.profile_image_url_https,
+          updated_at: new Date(),
+        },
+      });
+
+    console.log(
+      `Status: Updated user ${resp.user.name} - @${resp.user.screen_name}`,
+    );
+  }
+};
+
+const main = async () => {
+  // get args from command line
+  type Args = "tweets" | "users";
+
+  const arg = process.argv[2] as Args;
+
+  switch (arg) {
+    case "tweets":
+      await syncTweets();
+      break;
+    case "users":
+      await syncUsers();
+      break;
+    default:
+      console.error("Error: Invalid argument");
+      process.exit(1);
+  }
+
+  process.exit(0);
+};
+
+main();
