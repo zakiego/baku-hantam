@@ -1,4 +1,4 @@
-import { AddButton, DeleteButton } from "@/components/button";
+import { AddButton, BackButton, DeleteButton } from "@/components/button";
 import { ArrowRightIcon } from "@/components/icon";
 import { SITE_CONFIG } from "@/lib/const";
 import Link from "next/link";
@@ -10,6 +10,7 @@ export const Header = () => {
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl text-balance">
           Debat Tech Twitter Indonesia
         </h2>
+
         <p className="mt-6 text-lg leading-8 text-gray-600 text-balance">
           Nikmati debatnya, serap ilmunya, abaikan lainnya
         </p>
@@ -26,7 +27,8 @@ export const Header = () => {
             </Link>
           </div>
         </div>
-        <div className="mt-8 flex justify-center space-x-3">
+
+        <div className="mt-5 flex justify-center space-x-3">
           <div className="mt-2">
             <AddButton href={SITE_CONFIG.FORM}>Tambahkan Tweet</AddButton>
           </div>
@@ -36,6 +38,15 @@ export const Header = () => {
               Request Hapus Tweet
             </DeleteButton>
           </div>
+        </div>
+
+        <div className="mt-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm cursor-pointer hover:bg-gray-100">
+          <a href="https://twitter.com/satpamtech">
+            Mention <span> </span>
+            <span className="text-gray-800 font-bold">@satpamtech</span>
+            <span> </span>
+            jika kamu melihat keributan 👮🏻‍♀️
+          </a>
         </div>
       </div>
     </div>
