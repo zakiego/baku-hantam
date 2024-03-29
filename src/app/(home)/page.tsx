@@ -14,22 +14,20 @@ export default async function Page() {
       <Container>
         {data.map(async (item) => {
           return (
-            <Link key={item.topic.id} href={`/topic/${item.topic.id}`}>
+            <Link key={item.id} href={`/topic/${item.id}`}>
               <div className="px-4 py-8 my-4 bg-white border-b border-b-slate-200 cursor-pointer">
                 <div className="flex -space-x-2 overflow-hidden">
                   {item.users.map((avatar, id) => (
                     <img
-                      key={`${id}-${avatar}`}
+                      key={`${avatar}`}
                       className="inline-block h-7 w-7 rounded-full ring-2 ring-white"
                       src={avatar as string}
-                      alt=""
+                      alt={`avatar-${id}`}
                     />
                   ))}
                 </div>
-                <h1 className="text-lg font-bold mt-2">{item.topic.title}</h1>
-                <p className="mt-2 text-xs text-gray-500">
-                  {item.topic.description}
-                </p>
+                <h1 className="text-lg font-bold mt-2">{item.title}</h1>
+                <p className="mt-2 text-xs text-gray-500">{item.description}</p>
               </div>
             </Link>
           );

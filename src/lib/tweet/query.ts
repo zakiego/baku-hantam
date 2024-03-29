@@ -3,38 +3,36 @@ import { asc, eq } from "drizzle-orm";
 import type { Tweet } from "react-tweet/api";
 
 const home = async () => {
-  const [topics, tweets] = await Promise.all([
-    dbClient.query.topic.findMany(),
-    dbClient.query.tweet.findMany({
-      where: eq(dbSchema.tweet.show, true),
-      orderBy: asc(dbSchema.tweet.created_at),
-    }),
-  ]);
+  const data = await dbClient.query.topic.findMany({
+    with: {
+      tweet: {
+        with: {
+          user: true,
+        },
+      },
+    },
+  });
 
-  // join users and tweets to topics
-  const data = topics.map((topic) => {
-    const tweetsThisTopic = tweets.filter(
-      (tweet) => tweet.topic_id === topic.id,
-    );
+  const flatUsers = data.map((item) => {
+    const users = item.tweet.map((tweet) => {
+      const t = tweet.data as Tweet;
+      const sender = tweet.user.profile_image_url_https;
+      const quoted = t.quoted_tweet?.user.profile_image_url_https;
+
+      return [sender, quoted];
+    });
 
     return {
-      topic: topic,
-      tweets: tweetsThisTopic,
-      users: tweetsThisTopic
-        .flatMap((item) => {
-          const tweet = item.data as Tweet;
-          const sender = tweet.user.profile_image_url_https;
-          const quoted = tweet.quoted_tweet?.user.profile_image_url_https;
-
-          return [sender, quoted];
-        })
-        // filter duplicate
-        .filter((value, index, self) => self.indexOf(value) === index),
+      ...item,
+      users: users
+        .flat()
+        .filter((value, index, self) => self.indexOf(value) === index)
+        .filter((value) => value !== undefined),
     };
   });
 
-  const sortByMostTweets = data.sort((a, b) => {
-    return b.tweets.length - a.tweets.length;
+  const sortByMostTweets = flatUsers.sort((a, b) => {
+    return b.tweet.length - a.tweet.length;
   });
 
   return sortByMostTweets;
