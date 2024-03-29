@@ -12,6 +12,7 @@
 	"formatter": {
 		"enabled": true,
 		"indentWidth": 2,
-		"indentStyle": "space"
+		"indentStyle": "space",
+    "ignore": ["**/*/migrations/*", "node_modules"]
 	}
 }

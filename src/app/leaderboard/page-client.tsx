@@ -3,6 +3,7 @@
 import { CardLeaderboard } from "@/app/leaderboard/cards";
 import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
+import { SearchIcon } from "@/components/icon";
 import type { tweetQuery } from "@/lib/tweet/query";
 import { useQueryState } from "nuqs";
 import { useMemo } from "react";
@@ -32,20 +33,21 @@ export default function PageClientLeaderbord(props: Props) {
         Leaderboard
       </h2>
 
-      <div>
+      <div className="group flex flex-row-reverse items-center gap-2 mt-4 mb-6 border border-slate-200 rounded-lg overflow-hidden has-[input:focus]:border-slate-400">
         <input
           type="text"
           placeholder="Cari username"
-          className="w-full mt-4 p-2 border border-gray-300 rounded-md"
+          className="p-2 w-full outline-transparent peer "
           value={query || ""}
           onChange={(e) => setQuery(e.target.value)}
           autoComplete="off"
           data-1p-ignore
         />
+        <SearchIcon className="block w-12 border-r border-r-slate-200 peer-focus:border-r-slate-800 stroke-slate-600 peer-focus:stroke-slate-800 " />
       </div>
 
-      <div className="mt-4">
-        {filteredData.map((item, id) => (
+      <div className="mt-6">
+        {filteredData.map((item) => (
           <CardLeaderboard key={item.profile.screen_name} user={item} />
         ))}
       </div>
