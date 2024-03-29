@@ -3,7 +3,7 @@ import { z } from "zod";
 import { getTweetId } from "@/lib/tweet/utils";
 import { getTweet as reactTweetAPI } from "react-tweet/api";
 import { dbClient, dbSchema } from "@/lib/db";
-import { asc } from "drizzle-orm";
+import { asc, desc } from "drizzle-orm";
 
 const schema = z.object({
   data: z.array(
@@ -16,10 +16,7 @@ const schema = z.object({
   ),
 });
 
-type Mode = "SOFT-SYNC" | "HARD-SYNC";
-const mode: Mode = "SOFT-SYNC";
-
-const syncTweets = async () => {
+const sofSyncTweets = async () => {
   const data = fs.readFileSync("src/lib/tweet/data.json", "utf8");
   const debatesJSON = schema.parse(JSON.parse(data)).data.reverse();
   const debatesDB = await dbClient.query.tweet.findMany();
@@ -49,69 +46,65 @@ const syncTweets = async () => {
     console.log(`Status: Inserted topic ${topicTitle}`);
   }
 
-  if (mode === "SOFT-SYNC") {
-    for (const tweetJSON of debatesJSON) {
-      const topicId = tweetJSON.slug;
+  for (const tweetJSON of debatesJSON) {
+    const topicId = tweetJSON.slug;
 
-      const listTweetJsonNotInDB = tweetJSON.tweets.filter((tweetUrl) => {
-        return debatesDB.every(
-          (tweetDB) => tweetDB.id !== getTweetId(tweetUrl),
-        );
-      });
+    const listTweetJsonNotInDB = tweetJSON.tweets.filter((tweetUrl) => {
+      return debatesDB.every((tweetDB) => tweetDB.id !== getTweetId(tweetUrl));
+    });
 
-      for (const tweetUrl of listTweetJsonNotInDB) {
-        const tweetId = getTweetId(tweetUrl);
-        const resp = await reactTweetAPI(tweetId);
+    for (const tweetUrl of listTweetJsonNotInDB) {
+      const tweetId = getTweetId(tweetUrl);
+      const resp = await reactTweetAPI(tweetId);
 
-        if (!resp) {
-          console.error(`Error: Tweet not found ${tweetId}`);
-          return;
-        }
+      if (!resp) {
+        console.error(`Error: Tweet not found ${tweetId}`);
+        return;
+      }
 
-        // -- INSERT USER
-        await dbClient
-          .insert(dbSchema.user)
-          .values({
-            id: resp.user.id_str,
+      // -- INSERT USER
+      await dbClient
+        .insert(dbSchema.user)
+        .values({
+          id: resp.user.id_str,
+          name: resp.user.name,
+          screen_name: resp.user.screen_name,
+          profile_image_url_https: resp.user.profile_image_url_https,
+        })
+        .onConflictDoUpdate({
+          target: dbSchema.user.id,
+          set: {
             name: resp.user.name,
             screen_name: resp.user.screen_name,
             profile_image_url_https: resp.user.profile_image_url_https,
-          })
-          .onConflictDoUpdate({
-            target: dbSchema.user.id,
-            set: {
-              name: resp.user.name,
-              screen_name: resp.user.screen_name,
-              profile_image_url_https: resp.user.profile_image_url_https,
-              updated_at: new Date(),
-            },
-          });
+            updated_at: new Date(),
+          },
+        });
 
-        // -- INSERT TWEET
-        await dbClient
-          .insert(dbSchema.tweet)
-          .values({
-            id: tweetId,
+      // -- INSERT TWEET
+      await dbClient
+        .insert(dbSchema.tweet)
+        .values({
+          id: tweetId,
+          data: resp,
+          user_id: resp.user.id_str,
+          topic_id: topicId,
+          show: true,
+          created_at: new Date(resp.created_at),
+          updated_at: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: dbSchema.tweet.id,
+          set: {
             data: resp,
             user_id: resp.user.id_str,
             topic_id: topicId,
-            show: true,
             created_at: new Date(resp.created_at),
             updated_at: new Date(),
-          })
-          .onConflictDoUpdate({
-            target: dbSchema.tweet.id,
-            set: {
-              data: resp,
-              user_id: resp.user.id_str,
-              topic_id: topicId,
-              created_at: new Date(resp.created_at),
-              updated_at: new Date(),
-              show: true,
-            },
-          });
-        console.log(`Status: Inserted tweet ${tweetId}`);
-      }
+            show: true,
+          },
+        });
+      console.log(`Status: Inserted tweet ${tweetId}`);
     }
   }
 
@@ -208,6 +201,74 @@ const syncTweets = async () => {
   process.exit(0);
 };
 
+const hardSyncTweets = async () => {
+  const data = await dbClient.query.tweet.findMany({
+    orderBy: desc(dbSchema.tweet.updated_at),
+    limit: 20,
+    with: {
+      user: true,
+    },
+  });
+
+  for (const tweet of data) {
+    const tweetId = tweet.id;
+
+    const resp = await reactTweetAPI(tweetId);
+
+    if (!resp) {
+      console.error(`Error: Tweet not found ${tweetId}`);
+      continue;
+    }
+
+    // -- INSERT USER
+    await dbClient
+      .insert(dbSchema.user)
+      .values({
+        id: resp.user.id_str,
+        name: resp.user.name,
+        screen_name: resp.user.screen_name,
+        profile_image_url_https: resp.user.profile_image_url_https,
+      })
+      .onConflictDoUpdate({
+        target: dbSchema.user.id,
+        set: {
+          name: resp.user.name,
+          screen_name: resp.user.screen_name,
+          profile_image_url_https: resp.user.profile_image_url_https,
+          updated_at: new Date(),
+        },
+      });
+
+    // -- INSERT TWEET
+    await dbClient
+      .insert(dbSchema.tweet)
+      .values({
+        id: tweetId,
+        data: resp,
+        user_id: resp.user.id_str,
+        topic_id: tweet.topic_id,
+        show: true,
+        created_at: new Date(resp.created_at),
+        updated_at: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: dbSchema.tweet.id,
+        set: {
+          data: resp,
+          user_id: resp.user.id_str,
+          topic_id: tweet.topic_id,
+          created_at: new Date(resp.created_at),
+          updated_at: new Date(),
+          show: true,
+        },
+      });
+
+    console.log(
+      `Status: Updated tweet ${tweetId} - @${tweet.user.screen_name}`,
+    );
+  }
+};
+
 const syncUsers = async () => {
   const users = await dbClient.query.user.findMany({
     with: {
@@ -255,16 +316,19 @@ const syncUsers = async () => {
 
 const main = async () => {
   // get args from command line
-  type Args = "tweets" | "users";
+  type Args = "tweets" | "hard-tweets" | "users";
 
   const arg = process.argv[2] as Args;
 
   switch (arg) {
     case "tweets":
-      await syncTweets();
+      await sofSyncTweets();
       break;
     case "users":
       await syncUsers();
+      break;
+    case "hard-tweets":
+      await hardSyncTweets();
       break;
     default:
       console.error("Error: Invalid argument");
