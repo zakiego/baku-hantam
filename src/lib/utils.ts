@@ -146,3 +146,7 @@
 
 //   return sortByRankAndAlphabet;
 // };
+
+export const createTweetUrl = (username: string, tweetId: string) => {
+  return `https://twitter.com/${username}/status/${tweetId}`;
+};

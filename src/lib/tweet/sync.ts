@@ -4,6 +4,7 @@ import { getTweetId } from "@/lib/tweet/utils";
 import { getTweet as reactTweetAPI } from "react-tweet/api";
 import { dbClient, dbSchema } from "@/lib/db";
 import { asc, desc } from "drizzle-orm";
+import { createTweetUrl } from "@/lib/utils";
 
 const schema = z.object({
   data: z.array(
@@ -58,7 +59,7 @@ const sofSyncTweets = async () => {
       const resp = await reactTweetAPI(tweetId);
 
       if (!resp) {
-        console.error(`Error: Tweet not found ${tweetId}`);
+        console.error(`Error: Tweet not found ${tweetUrl}`);
         return;
       }
 
@@ -203,7 +204,7 @@ const sofSyncTweets = async () => {
 
 const hardSyncTweets = async () => {
   const data = await dbClient.query.tweet.findMany({
-    orderBy: desc(dbSchema.tweet.updated_at),
+    orderBy: asc(dbSchema.tweet.updated_at),
     limit: 10,
     with: {
       user: true,
@@ -216,7 +217,12 @@ const hardSyncTweets = async () => {
     const resp = await reactTweetAPI(tweetId);
 
     if (!resp) {
-      console.error(`Error: Tweet not found ${tweetId}`);
+      console.error(
+        `Error: Tweet not found ${createTweetUrl(
+          tweet.user.screen_name as string,
+          tweet.id,
+        )}`,
+      );
       continue;
     }
 
@@ -285,7 +291,12 @@ const syncUsers = async () => {
     const resp = await reactTweetAPI(tweetId);
 
     if (!resp) {
-      console.error(`Error: Tweet not found ${tweetId}`);
+      console.error(
+        `Error: Tweet not found ${createTweetUrl(
+          user.screen_name as string,
+          tweetId,
+        )}`,
+      );
       continue;
     }
 
@@ -332,6 +343,7 @@ const main = async () => {
       break;
     default:
       console.error("Error: Invalid argument");
+      console.log("Usage: pnpm sync <tweets|hard-tweets|users>");
       process.exit(1);
   }
 
