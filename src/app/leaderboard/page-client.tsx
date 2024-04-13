@@ -4,16 +4,18 @@ import { CardLeaderboard } from "@/app/leaderboard/cards";
 import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { SearchIcon } from "@/components/icon";
+import { Stats } from "@/components/stats";
 import type { tweetQuery } from "@/lib/tweet/query";
 import { useQueryState } from "nuqs";
 import { useMemo } from "react";
 
 interface Props {
   data: Awaited<ReturnType<typeof tweetQuery.leaderBoard>>;
+  stats: Stats;
 }
 
 export default function PageClientLeaderbord(props: Props) {
-  const { data } = props;
+  const { data, stats } = props;
 
   const [query, setQuery] = useQueryState("q");
 
@@ -34,6 +36,10 @@ export default function PageClientLeaderbord(props: Props) {
       <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-balance">
         Leaderboard
       </h2>
+
+      <div className="pt-3">
+        <Stats stats={stats} />
+      </div>
 
       <div className="group flex flex-row-reverse items-center gap-2 mt-4 mb-6 border border-slate-200 rounded-lg overflow-hidden has-[input:focus]:border-slate-400">
         <input
