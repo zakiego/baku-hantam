@@ -23,7 +23,7 @@ export const getTweetData = () => {
 };
 
 export const checkDuplicateTweets = async () => {
-  const duplicateTweets = await getTweetData()
+  const duplicateTweets = getTweetData()
     .flatMap((d) => {
       return d.tweets.map((t) => t);
     })
