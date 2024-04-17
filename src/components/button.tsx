@@ -38,7 +38,7 @@ export const BackButton = ({
 }) => {
   return (
     <Link href={href}>
-      <div className="mb-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm items-center cursor-pointer hover:bg-gray-100">
+      <div className="mb-5 bg-white inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm items-center cursor-pointer hover:bg-gray-100">
         <ChevronLeftIcon className="w-2 h-2" />
         <span className="ml-2">Kembali</span>
       </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { BackToTopButton } from "@/components/back-to-top-button";
 
 const jakartaSans = Plus_Jakarta_Sans({ display: "swap", subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
           {children}
           {/* <p>Under construction. Please come back later.</p> */}
         </div>
+        <BackToTopButton />
       </body>
     </html>
   );
