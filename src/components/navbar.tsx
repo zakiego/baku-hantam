@@ -11,7 +11,7 @@ export const Navbar = () => {
     domain === "tukar-pikiran.vercel.app" ? "TukarPikiran" : "BakuHantam";
 
   return (
-    <div className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white border border-y-slate-200 sticky top-0 z-50">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex">
@@ -50,6 +50,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };

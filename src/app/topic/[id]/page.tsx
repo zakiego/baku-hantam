@@ -62,7 +62,7 @@ export default async function Page({ params }: Props) {
       </div>
 
       <div>
-        {tweets.map((tweet, id) => {
+        {tweets.map((tweet) => {
           return <TweetCard key={tweet.id} tweet={tweet.data as Tweet} />;
         })}
       </div>

@@ -78,7 +78,7 @@ export default async function Page({ params }: Props) {
         ))}
       </div>
 
-      {data.tweets.map((item, index) => (
+      {data.tweets.map((item) => (
         <TweetCard key={item.id} tweet={item.data as Tweet} />
       ))}
     </Container>

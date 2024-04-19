@@ -12,7 +12,7 @@ export default async function Page() {
     <div>
       <Header />
       <Container>
-        {data.map(async (item) => {
+        {data.map((item) => {
           return (
             <Link key={item.id} href={`/topic/${item.id}`}>
               <div className="px-4 py-8 my-4 bg-white border-b border-b-slate-200 cursor-pointer">

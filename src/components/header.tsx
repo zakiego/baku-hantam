@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <div className="bg-white px-6 py-12 sm:py-12 lg:px-8">
+    <header className="px-6 py-12 sm:py-12 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl text-balance">
           Debat Tech Twitter Indonesia
@@ -49,6 +49,6 @@ export const Header = () => {
           </a>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
