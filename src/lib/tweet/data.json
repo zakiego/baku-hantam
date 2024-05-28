@@ -2,6 +2,20 @@
   "$schema": "https://baku-hantam.vercel.app/schema.json",
   "data": [
     {
+      "title": "Kontribusi AI",
+      "slug": "kontribusi-ai",
+      "description": "Dimulai dari bahas loker trus serang personal dan ditanya kontribusinya apa",
+      "tweets": [
+        "https://x.com/elonmusk/status/1794981927125987683",
+        "https://x.com/ylecun/status/1795034443809165464",
+        "https://x.com/bneiluj/status/1795150424820814019",
+        "https://x.com/ylecun/status/1795158563133833441",
+        "https://x.com/elonmusk/status/1795204353071919229",
+        "https://x.com/ylecun/status/1795219718837616775",
+        "https://x.com/elonmusk/status/1795231379619274846"
+      ]
+    },
+    {
       "title": "Config 2 Jam",
       "slug": "config-2-jam",
       "description": "Dimulai dari pembahasan tentang konfigurasi, lalu berlanjut ke topik yang lebih seru",
