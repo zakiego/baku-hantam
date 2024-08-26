@@ -22,4 +22,24 @@ export const restRouter = createNextRoute(restContract, {
       body: data,
     };
   },
+
+  getLeaderboard: async () => {
+    const data = await fetch(createApiUrl("/leaderboard")).then((res) =>
+      res.json(),
+    );
+
+    return {
+      status: 200,
+      body: data,
+    };
+  },
+
+  getStats: async () => {
+    const data = await fetch(createApiUrl("/stats")).then((res) => res.json());
+
+    return {
+      status: 200,
+      body: data,
+    };
+  },
 });

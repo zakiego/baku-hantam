@@ -47,6 +47,27 @@ export const getTopicBySlugSchema = z.object({
   }),
 });
 
+export const getLeaderboardSchema = z.object({
+  data: z.array(
+    z.object({
+      count: z.number(),
+      tweetUserId: z.string(),
+      tweetProfileImageUrl: z.string(),
+      tweetUserName: z.string(),
+      tweetUserScreenName: z.string(),
+      rank: z.number(),
+    }),
+  ),
+});
+
+const getStatsSchema = z.object({
+  data: z.object({
+    users: z.number(),
+    topics: z.number(),
+    tweets: z.number(),
+  }),
+});
+
 export const restContract = c.router({
   getAllTopics: {
     method: "GET",
@@ -63,5 +84,21 @@ export const restContract = c.router({
       200: getTopicBySlugSchema,
     },
     summary: "Get topic by slug",
+  },
+  getLeaderboard: {
+    method: "GET",
+    path: "/leaderboard",
+    responses: {
+      200: getLeaderboardSchema,
+    },
+    summary: "Get leaderboard",
+  },
+  getStats: {
+    method: "GET",
+    path: "/stats",
+    responses: {
+      200: getStatsSchema,
+    },
+    summary: "Get stats",
   },
 });
