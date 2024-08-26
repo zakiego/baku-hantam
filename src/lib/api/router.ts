@@ -42,4 +42,15 @@ export const restRouter = createNextRoute(restContract, {
       body: data,
     };
   },
+
+  getUserByScreenName: async ({ params }) => {
+    const data = await fetch(createApiUrl(`/user/${params.screenName}`)).then(
+      (res) => res.json(),
+    );
+
+    return {
+      status: 200,
+      body: data,
+    };
+  },
 });

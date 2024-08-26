@@ -68,6 +68,38 @@ const getStatsSchema = z.object({
   }),
 });
 
+const getUserByScreenNameSchema = z.object({
+  data: z.object({
+    profile: z.object({
+      tweetUserId: z.string(),
+      tweetProfileImageUrl: z.string(),
+      tweetUserName: z.string(),
+      tweetUserScreenName: z.string(),
+    }),
+    tweets: z.array(
+      z.object({
+        id: z.string(),
+        tweetUserId: z.string(),
+        tweetProfileImageUrl: z.string(),
+        tweetCreatedAt: z.string(),
+        tweetId: z.string(),
+        tweetText: z.string(),
+        tweetUserName: z.string(),
+        tweetUserScreenName: z.string(),
+        tweetData: z.any(),
+        topic: z.object({
+          id: z.string(),
+          title: z.string(),
+          slug: z.string(),
+        }),
+      }),
+    ),
+    topics: z.array(
+      z.object({ id: z.string(), title: z.string(), slug: z.string() }),
+    ),
+  }),
+});
+
 export const restContract = c.router({
   getAllTopics: {
     method: "GET",
@@ -100,5 +132,13 @@ export const restContract = c.router({
       200: getStatsSchema,
     },
     summary: "Get stats",
+  },
+  getUserByScreenName: {
+    method: "GET",
+    path: "/user/:screenName",
+    responses: {
+      200: getUserByScreenNameSchema,
+    },
+    summary: "Get user by screen name",
   },
 });
