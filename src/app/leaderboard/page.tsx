@@ -1,8 +1,5 @@
 import PageClientLeaderbord from "@/app/leaderboard/page-client";
 import { restClient } from "@/lib/api/client";
-import { dbClient, dbSchema } from "@/lib/db";
-import { tweetQuery } from "@/lib/tweet/query";
-import { count } from "drizzle-orm";
 import type { Metadata } from "next";
 
 export const dynamic = "force-static";
