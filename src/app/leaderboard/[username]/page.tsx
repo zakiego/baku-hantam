@@ -2,12 +2,9 @@ import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
-import { dbClient, dbSchema } from "@/lib/db";
-import { tweetQuery } from "@/lib/tweet/query";
-import { eq } from "drizzle-orm";
+import { restClient } from "@/lib/api/client";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { Tweet } from "react-tweet/api";
 
 export const dynamic = "force-static";
 
@@ -17,41 +14,45 @@ interface Props {
   };
 }
 
-export async function generateMetadata({ params }: Props) {
-  const user = await dbClient.query.user.findFirst({
-    where: eq(dbSchema.user.screen_name, params.username),
-  });
+// export async function generateMetadata({ params }: Props) {
+//   const user = await dbClient.query.user.findFirst({
+//     where: eq(dbSchema.user.screen_name, params.username),
+//   });
 
-  if (!user) {
-    throw new Error("User not found");
-  }
+//   if (!user) {
+//     throw new Error("User not found");
+//   }
 
-  return {
-    title: `@${user.screen_name}`,
-    description: `Tweet by @${user.screen_name} on Debat Tech Twitter Indonesia`,
-  };
-}
+//   return {
+//     title: `@${user.screen_name}`,
+//     description: `Tweet by @${user.screen_name} on Debat Tech Twitter Indonesia`,
+//   };
+// }
 
 export async function generateStaticParams() {
-  const listUser = await tweetQuery.userList();
+  const resp = await restClient.getLeaderboard();
 
-  return listUser.map((item) => ({
-    username: item.screen_name,
+  if (resp.status !== 200) {
+    throw new Error("Failed to fetch leaderboard");
+  }
+
+  return resp.body.data.map((item) => ({
+    username: item.tweetUserScreenName,
   }));
 }
 
 export default async function Page({ params }: Props) {
-  const data = await tweetQuery.leaderBoardByUser(params.username);
+  const resp = await restClient.getUserByScreenName({
+    params: {
+      screenName: params.username,
+    },
+  });
 
-  if (!data) {
+  if (resp.status !== 200) {
     notFound();
   }
 
-  const listTopic =
-    data.tweets
-      .map((item) => item.topic_id)
-      // filter duplicate
-      .filter((value, index, self) => self.indexOf(value) === index) || [];
+  const { tweets, topics, profile } = resp.body.data;
 
   return (
     <Container className="py-10 relative">
@@ -59,27 +60,27 @@ export default async function Page({ params }: Props) {
 
       <div>
         <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-balance">
-          <a href={`https://twitter.com/${params.username}`}>
-            @{params.username}
+          <a href={`https://twitter.com/${profile.tweetUserScreenName}`}>
+            @{profile.tweetUserScreenName}
           </a>
         </h2>
       </div>
 
-      <p className="mt-2 text-sm text-gray-500">{data.tweets.length} tweets</p>
+      <p className="mt-2 text-sm text-gray-500">{tweets.length} tweets</p>
 
       <h3 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl text-balance">
         Topic
       </h3>
       <div className="mt-4 space-x-2">
-        {listTopic.map((topic) => (
-          <Link key={topic} href={`/topic/${topic}`}>
-            <Tag>{topic}</Tag>
+        {topics.map((topic) => (
+          <Link key={topic.id} href={`/topic/${topic.slug}`}>
+            <Tag>{topic.slug}</Tag>
           </Link>
         ))}
       </div>
 
-      {data.tweets.map((item) => (
-        <TweetCard key={item.id} tweet={item.data as Tweet} />
+      {tweets.map((item) => (
+        <TweetCard key={item.id} tweet={item.tweetData} />
       ))}
     </Container>
   );

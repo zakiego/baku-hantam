@@ -1,4 +1,5 @@
 import PageClientLeaderbord from "@/app/leaderboard/page-client";
+import { restClient } from "@/lib/api/client";
 import { dbClient, dbSchema } from "@/lib/db";
 import { tweetQuery } from "@/lib/tweet/query";
 import { count } from "drizzle-orm";
@@ -13,25 +14,15 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const data = await tweetQuery.leaderBoard();
+  const leaderboardResp = await restClient.getLeaderboard();
+  const statsResp = await restClient.getStats();
 
-  const usersCount = await dbClient
-    .select({ count: count() })
-    .from(dbSchema.user);
+  if (leaderboardResp.status !== 200 || statsResp.status !== 200) {
+    throw new Error("Failed to fetch leaderboard data");
+  }
 
-  const topicsCount = await dbClient
-    .select({ count: count() })
-    .from(dbSchema.topic);
-
-  const tweetsCount = await dbClient
-    .select({ count: count() })
-    .from(dbSchema.tweet);
-
-  const stats = {
-    users: usersCount[0].count,
-    topics: topicsCount[0].count,
-    tweets: tweetsCount[0].count,
-  };
+  const { data: stats } = statsResp.body;
+  const { data } = leaderboardResp.body;
 
   return <PageClientLeaderbord data={data} stats={stats} />;
 }

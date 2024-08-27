@@ -1,6 +1,8 @@
 // import { debates } from "@/lib/tweets";
 // import type { GroupedByUsername } from "@/lib/types";
 
+import { ENV } from "@/lib/env";
+
 // export const getTweetId = (tweet: string) => {
 //   const tweetId = tweet.split("/").pop();
 
@@ -149,4 +151,10 @@
 
 export const createTweetUrl = (username: string, tweetId: string) => {
   return `https://twitter.com/${username}/status/${tweetId}`;
+};
+
+export const createApiUrl = (path: string) => {
+  const trimmedPath = path.startsWith("/") ? path : `/${path}`;
+
+  return `${ENV.NEXT_PUBLIC_API_URL}${trimmedPath}`;
 };

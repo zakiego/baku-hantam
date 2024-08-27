@@ -1,12 +1,18 @@
-import { tweetQuery } from "@/lib/tweet/query";
+import { restClient } from "@/lib/api/client";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const topics = await tweetQuery.topicList();
-  const listUser = await tweetQuery.userList();
+  const topics = await restClient.getAllTopics();
+  const listUser = await restClient.getLeaderboard();
 
-  const userPaths = listUser.map((item) => `/leaderboard/${item.screen_name}`);
-  const topicPaths = topics.map((item) => `/topic/${item.id}`);
+  if (topics.status !== 200 || listUser.status !== 200) {
+    throw new Error("Failed to fetch data");
+  }
+
+  const topicPaths = topics.body.data.map((item) => `/topic/${item.slug}`);
+  const userPaths = listUser.body.data.map(
+    (item) => `/leaderboard/${item.tweetUserScreenName}`,
+  );
 
   const paths = ["/", "/leaderboard", ...userPaths, ...topicPaths];
 

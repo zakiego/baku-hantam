@@ -4,13 +4,16 @@ import { CardLeaderboard } from "@/app/leaderboard/cards";
 import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { SearchIcon } from "@/components/icon";
+import type { z } from "zod";
+
 import { Stats } from "@/components/stats";
+import type { getLeaderboardSchema } from "@/lib/api/contract";
 import type { tweetQuery } from "@/lib/tweet/query";
 import { useQueryState } from "nuqs";
 import { useMemo } from "react";
 
 interface Props {
-  data: Awaited<ReturnType<typeof tweetQuery.leaderBoard>>;
+  data: z.infer<typeof getLeaderboardSchema>["data"];
   stats: Stats;
 }
 
@@ -25,7 +28,7 @@ export default function PageClientLeaderbord(props: Props) {
     }
 
     return data.filter((user) =>
-      user.profile.screen_name?.toLowerCase().includes(query.toLowerCase()),
+      user.tweetUserScreenName?.toLowerCase().includes(query.toLowerCase()),
     );
   }, [data, query]);
 
@@ -56,7 +59,7 @@ export default function PageClientLeaderbord(props: Props) {
 
       <div className="mt-6">
         {filteredData.map((item) => (
-          <CardLeaderboard key={item.profile.screen_name} user={item} />
+          <CardLeaderboard key={item.tweetUserId} user={item} />
         ))}
       </div>
     </Container>
