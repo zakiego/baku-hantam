@@ -1,7 +1,6 @@
 import { Container } from "@/components/container";
 import { Header } from "@/components/header";
 import { restClient } from "@/lib/api/client";
-import { tweetQuery } from "@/lib/tweet/query";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -26,8 +25,8 @@ export default async function Page() {
                     <img
                       key={`${topic.id}-${people.id}`}
                       className="inline-block h-7 w-7 rounded-full ring-2 ring-white"
-                      src={people.tweetProfileImageUrl}
-                      alt={people.tweetUserId}
+                      src={people.profile_image_url}
+                      alt={people.user_id}
                     />
                   ))}
                 </div>

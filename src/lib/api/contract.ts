@@ -19,8 +19,8 @@ const getAllTopicsSchema = z.object({
       peoples: z.array(
         z.object({
           id: z.string(),
-          tweetUserId: z.string(),
-          tweetProfileImageUrl: z.string(),
+          user_id: z.string(),
+          profile_image_url: z.string(),
         }),
       ),
     }),
