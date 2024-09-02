@@ -1,5 +1,8 @@
+import { extendZodWithOpenApi } from "@anatine/zod-openapi";
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
+
+extendZodWithOpenApi(z);
 
 const c = initContract();
 
@@ -10,8 +13,9 @@ const getAllTopicsSchema = z.object({
       title: z.string(),
       description: z.string(),
       slug: z.string(),
-      updatedAt: z.string(),
-      createdAt: z.string(),
+      updated_at: z.string(),
+      created_at: z.string(),
+      tweets_count: z.number(),
       peoples: z.array(
         z.object({
           id: z.string(),
