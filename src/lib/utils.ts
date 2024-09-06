@@ -1,7 +1,13 @@
+import { ENV } from "@/lib/env";
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
 // import { debates } from "@/lib/tweets";
 // import type { GroupedByUsername } from "@/lib/types";
-
-import { ENV } from "@/lib/env";
 
 // export const getTweetId = (tweet: string) => {
 //   const tweetId = tweet.split("/").pop();
