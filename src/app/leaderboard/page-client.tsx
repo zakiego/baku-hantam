@@ -8,7 +8,6 @@ import type { z } from "zod";
 
 import { Stats } from "@/components/stats";
 import type { getLeaderboardSchema } from "@/lib/api/contract";
-import type { tweetQuery } from "@/lib/tweet/query";
 import { useQueryState } from "nuqs";
 import { useMemo } from "react";
 
@@ -28,7 +27,7 @@ export default function PageClientLeaderbord(props: Props) {
     }
 
     return data.filter((user) =>
-      user.tweetUserScreenName?.toLowerCase().includes(query.toLowerCase()),
+      user.tweet_user_screen_name?.toLowerCase().includes(query.toLowerCase()),
     );
   }, [data, query]);
 
@@ -59,7 +58,7 @@ export default function PageClientLeaderbord(props: Props) {
 
       <div className="mt-6">
         {filteredData.map((item) => (
-          <CardLeaderboard key={item.tweetUserId} user={item} />
+          <CardLeaderboard key={item.tweet_user_id} user={item} />
         ))}
       </div>
     </Container>

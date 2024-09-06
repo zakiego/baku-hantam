@@ -2,12 +2,12 @@ import { AddButton, BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { TweetCard } from "@/components/tweet";
 import { restClient } from "@/lib/api/client";
-import { SITE_CONFIG } from "@/lib/const";
-import { tweetQuery } from "@/lib/tweet/query";
+import { REVALIDATE_TIME, SITE_CONFIG } from "@/lib/const";
 import { notFound } from "next/navigation";
-import type { Tweet } from "react-tweet/api";
 
 export const dynamic = "force-static";
+export const revalidate = REVALIDATE_TIME;
+export const dynamicParams = true;
 
 interface Props {
   params: {
@@ -15,24 +15,24 @@ interface Props {
   };
 }
 
-// export async function generateMetadata({ params }: Props) {
-//   const resp = await restClient.getTopicBySlug({
-//     params: {
-//       slug: params.slug,
-//     },
-//   });
+export async function generateMetadata({ params }: Props) {
+  const resp = await restClient.getTopicBySlug({
+    params: {
+      slug: params.slug,
+    },
+  });
 
-//   if (resp.status !== 200) {
-//     throw new Error("Failed to fetch topic");
-//   }
+  if (resp.status !== 200) {
+    throw new Error("Failed to fetch topic");
+  }
 
-//   const { data: topic } = resp.body;
+  const { data: topic } = resp.body;
 
-//   return {
-//     title: `${topic.title}`,
-//     description: topic.description,
-//   };
-// }
+  return {
+    title: `${topic.title}`,
+    description: topic.description,
+  };
+}
 
 export async function generateStaticParams() {
   const resp = await restClient.getAllTopics();
@@ -79,7 +79,7 @@ export default async function Page({ params }: Props) {
 
       <div>
         {topic.tweets.map((tweet) => {
-          return <TweetCard key={tweet.id} tweet={tweet.tweetData} />;
+          return <TweetCard key={tweet.id} tweet={tweet.tweet_data} />;
         })}
       </div>
     </Container>

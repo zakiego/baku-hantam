@@ -1,8 +1,10 @@
 import PageClientLeaderbord from "@/app/leaderboard/page-client";
 import { restClient } from "@/lib/api/client";
+import { REVALIDATE_TIME } from "@/lib/const";
 import type { Metadata } from "next";
 
 export const dynamic = "force-static";
+export const revalidate = REVALIDATE_TIME;
 
 export const metadata: Metadata = {
   title: "Leaderboard",

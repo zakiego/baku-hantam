@@ -3,10 +3,13 @@ import { Container } from "@/components/container";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
 import { restClient } from "@/lib/api/client";
+import { REVALIDATE_TIME } from "@/lib/const";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
+export const revalidate = REVALIDATE_TIME;
+export const dynamicParams = true;
 
 interface Props {
   params: {
@@ -14,20 +17,24 @@ interface Props {
   };
 }
 
-// export async function generateMetadata({ params }: Props) {
-//   const user = await dbClient.query.user.findFirst({
-//     where: eq(dbSchema.user.screen_name, params.username),
-//   });
+export async function generateMetadata({ params }: Props) {
+  const resp = await restClient.getUserByScreenName({
+    params: {
+      screenName: params.username,
+    },
+  });
 
-//   if (!user) {
-//     throw new Error("User not found");
-//   }
+  if (resp.status !== 200) {
+    throw new Error("User not found");
+  }
 
-//   return {
-//     title: `@${user.screen_name}`,
-//     description: `Tweet by @${user.screen_name} on Debat Tech Twitter Indonesia`,
-//   };
-// }
+  const screenName = resp.body.data.profile.tweet_user_screen_name;
+
+  return {
+    title: `@${screenName}`,
+    description: `Tweet by @${screenName} on Debat Tech Twitter Indonesia`,
+  };
+}
 
 export async function generateStaticParams() {
   const resp = await restClient.getLeaderboard();
@@ -37,7 +44,7 @@ export async function generateStaticParams() {
   }
 
   return resp.body.data.map((item) => ({
-    username: item.tweetUserScreenName,
+    username: item.tweet_user_screen_name,
   }));
 }
 
@@ -60,8 +67,8 @@ export default async function Page({ params }: Props) {
 
       <div>
         <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-balance">
-          <a href={`https://twitter.com/${profile.tweetUserScreenName}`}>
-            @{profile.tweetUserScreenName}
+          <a href={`https://twitter.com/${profile.tweet_user_screen_name}`}>
+            @{profile.tweet_user_screen_name}
           </a>
         </h2>
       </div>
@@ -80,7 +87,7 @@ export default async function Page({ params }: Props) {
       </div>
 
       {tweets.map((item) => (
-        <TweetCard key={item.id} tweet={item.tweetData} />
+        <TweetCard key={item.id} tweet={item.tweet_data} />
       ))}
     </Container>
   );
