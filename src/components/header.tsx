@@ -40,14 +40,14 @@ export const Header = () => {
           </div>
         </div>
 
-        <div className="mt-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm cursor-pointer hover:bg-gray-100 text-balance">
+        {/* <div className="mt-5 inline-flex border border-gray-300 rounded-md px-3 py-1 text-gray-600 text-sm cursor-pointer hover:bg-gray-100 text-balance">
           <a href="https://twitter.com/satpamtech">
             Mention <span> </span>
             <span className="text-gray-800 font-bold">@satpamtech</span>
             <span> </span>
             jika kamu melihat keributan 👮🏻‍♀️
           </a>
-        </div>
+        </div> */}
       </div>
     </header>
   );
