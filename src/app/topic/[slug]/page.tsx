@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props) {
   });
 
   if (resp.status !== 200) {
-    throw new Error("Failed to fetch topic");
+    return notFound();
   }
 
   const { data: topic } = resp.body;
