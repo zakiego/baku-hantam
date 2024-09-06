@@ -26,7 +26,7 @@ interface Props {
 }
 
 const sortOptions = [
-  { label: "Paling baru dibiarkan", value: "date" },
+  { label: "Paling baru dibicarakan", value: "date" },
   { label: "Paling banyak tweetnya", value: "tweet" },
   { label: "Paling banyak orang yang nimbrung", value: "people" },
 ] as const;
