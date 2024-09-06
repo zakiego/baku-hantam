@@ -6,7 +6,7 @@ extendZodWithOpenApi(z);
 
 const c = initContract();
 
-const getAllTopicsSchema = z.object({
+export const getAllTopicsSchema = z.object({
   data: z.array(
     z.object({
       id: z.string(),
