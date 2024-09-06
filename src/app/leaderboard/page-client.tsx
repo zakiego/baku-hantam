@@ -43,13 +43,15 @@ export default function PageClientLeaderbord(props: Props) {
         <Stats stats={stats} />
       </div>
 
-      <SearchInput
-        query={query}
-        setQuery={(query) => setQuery(query)}
-        placeholder="Cari username"
-        autoComplete="off"
-        data-1p-ignore
-      />
+      <div className="mt-4 mb-6">
+        <SearchInput
+          query={query}
+          setQuery={(query) => setQuery(query)}
+          placeholder="Cari username"
+          autoComplete="off"
+          data-1p-ignore
+        />
+      </div>
 
       <div className="mt-6">
         {filteredData.map((item) => (

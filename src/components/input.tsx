@@ -1,16 +1,22 @@
 import { SearchIcon } from "@/components/icon";
+import { cn } from "@/lib/utils";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   query: string;
   setQuery: (query: string) => void;
 }
 
-export const SearchInput = ({ query, setQuery, ...props }: Props) => {
+export const SearchInput = ({
+  query,
+  setQuery,
+  className,
+  ...props
+}: Props) => {
   return (
-    <div className="group flex flex-row-reverse items-center gap-2 mt-4 mb-6 border border-slate-200 rounded-lg overflow-hidden has-[input:focus]:border-slate-400">
+    <div className="flex-1 group flex flex-row-reverse items-center gap-2 border border-slate-200 rounded-lg overflow-hidden has-[input:focus]:border-slate-400">
       <input
         type="text"
-        className="p-2 w-full outline-transparent peer "
+        className={cn("p-2 w-full outline-transparent peer", className)}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         {...props}
