@@ -113,6 +113,10 @@ export default function PageClientHome({ data }: Props) {
                       className="inline-block h-7 w-7 rounded-full ring-2 ring-white"
                       src={people.profile_image_url}
                       alt={people.user_id}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                      }}
                     />
                   ))}
                 </div>
