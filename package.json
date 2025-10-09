@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbo --port 3005",
     "sync": "tsx src/lib/tweet/sync.ts",
     "build": "next build",
     "start": "next start",
