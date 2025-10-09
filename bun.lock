@@ -19,7 +19,7 @@
         "pg": "^8.11.5",
         "react": "^18",
         "react-dom": "^18",
-        "react-tweet": "^3.2.1",
+        "react-tweet": "^3.2.2",
         "swagger-ui-react": "^5.17.14",
         "tailwind-merge": "^2.5.2",
         "tailwindcss-animate": "^1.0.7",
@@ -1030,7 +1030,7 @@
 
     "react-syntax-highlighter": ["react-syntax-highlighter@15.5.0", "", { "dependencies": { "@babel/runtime": "7.25.6", "highlight.js": "10.7.3", "lowlight": "1.20.0", "prismjs": "1.29.0", "refractor": "3.6.0" }, "peerDependencies": { "react": "18.3.1" } }, "sha512-+zq2myprEnQmH5yw6Gqc8lD55QHnpKaU8TOcFeC/Lg/MQSs8UknEA0JC4nTZGFAXC2J2Hyj/ijJ7NlabyPi2gg=="],
 
-    "react-tweet": ["react-tweet@3.2.1", "", { "dependencies": { "@swc/helpers": "0.5.12", "clsx": "2.1.1", "swr": "2.2.5" }, "peerDependencies": { "react": "18.3.1", "react-dom": "18.3.1" } }, "sha512-dktP3RMuwRB4pnSDocKpSsW5Hq1IXRW6fONkHhxT5EBIXsKZzdQuI70qtub1XN2dtZdkJWWxfBm/Q+kN+vRYFA=="],
+    "react-tweet": ["react-tweet@3.2.2", "", { "dependencies": { "@swc/helpers": "^0.5.3", "clsx": "^2.0.0", "swr": "^2.2.4" }, "peerDependencies": { "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-hIkxAVPpN2RqWoDEbo3TTnN/pDcp9/Jb6pTgiA4EbXa9S+m2vHIvvZKHR+eS0PDIsYqe+zTmANRa5k6+/iwGog=="],
 
     "read-cache": ["read-cache@1.0.0", "", { "dependencies": { "pify": "2.3.0" } }, "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA=="],
 

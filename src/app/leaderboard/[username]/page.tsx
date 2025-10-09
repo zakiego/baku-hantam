@@ -2,7 +2,8 @@ import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
-import { restClient } from "@/lib/api/client";
+import { restClient, restClientV2 } from "@/lib/api/client";
+import type { ResponseGetProfile } from "@/lib/api/contractv2";
 import { REVALIDATE_TIME } from "@/lib/const";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,9 +19,9 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const resp = await restClient.getUserByScreenName({
+  const resp = await restClientV2.getProfile({
     params: {
-      screenName: params.username,
+      authorHandle: params.username,
     },
   });
 
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
     throw new Error("User not found");
   }
 
-  const screenName = resp.body.data.profile.tweet_user_screen_name;
+  const screenName = resp.body.data.profile.authorHandle;
 
   return {
     title: `@${screenName}`,
@@ -49,9 +50,9 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const resp = await restClient.getUserByScreenName({
+  const resp = await restClientV2.getProfile({
     params: {
-      screenName: params.username,
+      authorHandle: params.username,
     },
   });
 
@@ -59,7 +60,7 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  const { tweets, topics, profile } = resp.body.data;
+  const { tweets, debates, profile } = resp.body.data;
 
   return (
     <Container className="py-10 relative">
@@ -67,28 +68,30 @@ export default async function Page({ params }: Props) {
 
       <div>
         <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-balance">
-          <a href={`https://twitter.com/${profile.tweet_user_screen_name}`}>
-            @{profile.tweet_user_screen_name}
+          <a href={`https://twitter.com/${profile.authorHandle}`}>
+            @{profile.authorHandle}
           </a>
         </h2>
       </div>
 
-      <p className="mt-2 text-sm text-gray-500">{tweets.length} tweets</p>
+      <p className="mt-2 text-sm text-gray-500">{tweets.data.length} tweets</p>
 
       <h3 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl text-balance">
-        Topic
+        Debates
       </h3>
       <div className="mt-4 space-x-2">
-        {topics.map((topic) => (
-          <Link key={topic.id} href={`/topic/${topic.slug}`}>
-            <Tag>{topic.slug}</Tag>
+        {debates.map((debate: ResponseGetProfile["data"]["debates"][0]) => (
+          <Link key={debate.id} href={`/topic/${debate.slug}`}>
+            <Tag>{debate.slug}</Tag>
           </Link>
         ))}
       </div>
 
-      {tweets.map((item) => (
-        <TweetCard key={item.id} tweet={item.tweet_data} />
-      ))}
+      {tweets.data.map(
+        (item: ResponseGetProfile["data"]["tweets"]["data"][0]) => (
+          <TweetCard key={item.id} tweetId={item.tweetId} />
+        ),
+      )}
     </Container>
   );
 }

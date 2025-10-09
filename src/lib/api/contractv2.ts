@@ -56,6 +56,50 @@ const getStatsSchema = z.object({
   }),
 });
 
+const getProfileSchema = z.object({
+  data: z.object({
+    profile: z.object({
+      authorHandle: z.string(),
+      authorName: z.string(),
+      authorImage: z.string(),
+      tweetCount: z.number(),
+      firstTweetedAt: z.string(),
+      lastTweetedAt: z.string(),
+      debateCount: z.number(),
+    }),
+    debates: z.array(
+      z.object({
+        id: z.string(),
+        slug: z.string(),
+        titleEn: z.string(),
+        titleId: z.string(),
+        lang: z.string(),
+        tweetCount: z.number(),
+        lastTweetedAt: z.string(),
+      }),
+    ),
+    tweets: z.object({
+      data: z.array(
+        z.object({
+          id: z.string(),
+          tweetId: z.string(),
+          text: z.string(),
+          authorId: z.string(),
+          authorName: z.string(),
+          authorHandle: z.string(),
+          authorImage: z.string(),
+          conversationId: z.string().nullable(),
+          tweetedAt: z.string(),
+          lang: z.string(),
+        }),
+      ),
+      page: z.number(),
+      limit: z.number(),
+      hasNext: z.boolean(),
+    }),
+  }),
+});
+
 export const restContractV2 = c.router({
   getDebates: {
     method: "GET",
@@ -85,6 +129,14 @@ export const restContractV2 = c.router({
     },
     summary: "Get stats data",
   },
+  getProfile: {
+    method: "GET",
+    path: "/profile/:authorHandle",
+    responses: {
+      200: getProfileSchema,
+    },
+    summary: "Get user profile by screen name",
+  },
 });
 
 export type ClientInferRequestV2 = ClientInferRequest<typeof restContractV2>;
@@ -101,5 +153,10 @@ export type ResponseGetLeaderboard = ClientInferResponseBody<
 
 export type ResponseGetStats = ClientInferResponseBody<
   typeof restContractV2.getStats,
+  200
+>;
+
+export type ResponseGetProfile = ClientInferResponseBody<
+  typeof restContractV2.getProfile,
   200
 >;
