@@ -62,7 +62,7 @@ export default function PageClientLeaderbord({ datav2, stats }: Props) {
               tweet_user_name: item.authorName,
               tweet_user_screen_name: item.authorHandle,
               count: item.count,
-              rank: 0, // Assuming rank is not available in the new data, setting to 0 or remove if not needed.
+              rank: item.rank,
             }}
           />
         ))}

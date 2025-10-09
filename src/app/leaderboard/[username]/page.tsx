@@ -1,5 +1,6 @@
 import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
+import { MedalIcon, TrophyIcon } from "@/components/icon";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
 import { restClient, restClientV2 } from "@/lib/api/client";
@@ -72,6 +73,18 @@ export default async function Page({ params }: Props) {
             @{profile.authorHandle}
           </a>
         </h2>
+        <div className="mt-2 flex items-center gap-2">
+          {profile.rank === 1 && (
+            <TrophyIcon className="w-5 h-5 text-yellow-500" />
+          )}
+          {profile.rank === 2 && (
+            <MedalIcon className="w-5 h-5 text-gray-400" />
+          )}
+          {profile.rank === 3 && (
+            <MedalIcon className="w-5 h-5 text-amber-700" />
+          )}
+          <p className="text-sm text-gray-500">Rank: {profile.rank}</p>
+        </div>
       </div>
 
       <p className="mt-2 text-sm text-gray-500">{tweets.data.length} tweets</p>

@@ -44,6 +44,7 @@ const getLeaderboardSchema = z.object({
       authorName: z.string(),
       authorImage: z.string(),
       count: z.number(),
+      rank: z.number(),
     }),
   ),
 });
@@ -66,6 +67,7 @@ const getProfileSchema = z.object({
       firstTweetedAt: z.string(),
       lastTweetedAt: z.string(),
       debateCount: z.number(),
+      rank: z.number(),
     }),
     debates: z.array(
       z.object({

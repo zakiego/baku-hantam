@@ -1,3 +1,4 @@
+import { MedalIcon, TrophyIcon } from "@/components/icon";
 import type { getLeaderboardSchema } from "@/lib/api/contract";
 import Link from "next/link";
 import type { z } from "zod";
@@ -17,9 +18,20 @@ export const CardLeaderboard = (props: Props) => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <span className="text-md text-slate-600 mr-3 font-bold">
-              {user.rank}
-            </span>
+            <div className="flex items-center mr-3 min-w-[40px]">
+              {user.rank === 1 && (
+                <TrophyIcon className="w-5 h-5 text-yellow-500 mr-1" />
+              )}
+              {user.rank === 2 && (
+                <MedalIcon className="w-5 h-5 text-gray-400 mr-1" />
+              )}
+              {user.rank === 3 && (
+                <MedalIcon className="w-5 h-5 text-amber-700 mr-1" />
+              )}
+              <span className="text-md text-slate-600 font-bold">
+                {user.rank}
+              </span>
+            </div>
             {user.tweet_profile_image_url ? (
               <img
                 src={user.tweet_profile_image_url}
