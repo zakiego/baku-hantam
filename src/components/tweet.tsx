@@ -21,7 +21,7 @@ import type { Tweet } from "react-tweet/api";
 
 const getTweet = async (id: string) => {
   const response = await fetch(
-    `https://bakuhantam-cache.zakiego.com/api/tweet/${id}`,
+    `https://bakuhantam-cache.zakiego.com/api/tweet/${id}?mode=image`,
   );
 
   const { data } = await response.json();
