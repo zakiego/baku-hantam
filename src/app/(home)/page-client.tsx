@@ -120,9 +120,9 @@ export default function PageClientHome({ data }: Props) {
                     />
                   ))}
                 </div>
-                <h1 className="text-lg font-bold mt-2">{debate.titleEn}</h1>
+                <h1 className="text-lg font-bold mt-2">{debate.title}</h1>
                 <p className="mt-2 text-xs text-gray-500">
-                  {debate.descriptionEn}
+                  {debate.description}
                 </p>
               </div>
             </Link>

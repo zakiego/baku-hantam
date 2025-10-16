@@ -9,12 +9,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     throw new Error("Failed to fetch data");
   }
 
-  const topicPaths = topics.body.data.map((item) => `/topic/${item.slug}`);
+  const debatePaths = topics.body.data.map((item) => `/debate/${item.slug}`);
   const userPaths = listUser.body.data.map(
     (item) => `/leaderboard/${item.authorHandle}`,
   );
 
-  const paths = ["/", "/leaderboard", ...userPaths, ...topicPaths];
+  const paths = ["/", "/leaderboard", ...userPaths, ...debatePaths];
 
   const DOMAIN = "https://bakuhantam.dev";
 

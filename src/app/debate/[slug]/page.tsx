@@ -10,12 +10,13 @@ export const revalidate = REVALIDATE_TIME;
 export const dynamicParams = true;
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   const resp = await restClient.getDebateDetails({
     params: {
       idOrSlug: params.slug,
@@ -27,8 +28,8 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: `${resp.body.data.titleId}`,
-    description: resp.body.data.descriptionId,
+    title: `${resp.body.data.title}`,
+    description: resp.body.data.description,
   };
 }
 
@@ -44,7 +45,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const resp = await restClient.getDebateTweets({
     params: {
       idOrSlug: params.slug,
@@ -70,11 +72,11 @@ export default async function Page({ params }: Props) {
 
       <div>
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-balance">
-          {debate.titleId}
+          {debate.title}
         </h2>
 
         <p className="mt-2 leading-8 text-gray-600 text-balance text-sm">
-          {debate.descriptionId}
+          {debate.description}
         </p>
       </div>
 

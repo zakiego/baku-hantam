@@ -14,15 +14,16 @@ export const revalidate = REVALIDATE_TIME;
 export const dynamicParams = true;
 
 interface Props {
-  params: {
+  params: Promise<{
     username: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   const resp = await restClient.getProfile({
     params: {
-      authorHandle: params.username,
+      handle: params.username,
     },
   });
 
@@ -50,10 +51,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const resp = await restClient.getProfile({
     params: {
-      authorHandle: params.username,
+      handle: params.username,
     },
   });
 
@@ -94,7 +96,7 @@ export default async function Page({ params }: Props) {
       </h3>
       <div className="mt-4 space-x-2">
         {debates.map((debate: ResponseGetProfile["data"]["debates"][0]) => (
-          <Link key={debate.id} href={`/topic/${debate.slug}`}>
+          <Link key={debate.id} href={`/debate/${debate.slug}`}>
             <Tag>{debate.slug}</Tag>
           </Link>
         ))}
