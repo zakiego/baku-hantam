@@ -3,8 +3,8 @@ import { Container } from "@/components/container";
 import { MedalIcon, TrophyIcon } from "@/components/icon";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
-import { restClient, restClientV2 } from "@/lib/api/client";
-import type { ResponseGetProfile } from "@/lib/api/contractv2";
+import { restClient } from "@/lib/api/client";
+import type { ResponseGetProfile } from "@/lib/api/contract";
 import { REVALIDATE_TIME } from "@/lib/const";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const resp = await restClientV2.getProfile({
+  const resp = await restClient.getProfile({
     params: {
       authorHandle: params.username,
     },
@@ -46,12 +46,12 @@ export async function generateStaticParams() {
   }
 
   return resp.body.data.map((item) => ({
-    username: item.tweet_user_screen_name,
+    username: item.authorHandle,
   }));
 }
 
 export default async function Page({ params }: Props) {
-  const resp = await restClientV2.getProfile({
+  const resp = await restClient.getProfile({
     params: {
       authorHandle: params.username,
     },

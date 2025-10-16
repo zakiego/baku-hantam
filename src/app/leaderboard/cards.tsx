@@ -1,19 +1,23 @@
 import { MedalIcon, TrophyIcon } from "@/components/icon";
-import type { getLeaderboardSchema } from "@/lib/api/contract";
 import Link from "next/link";
-import type { z } from "zod";
 
 interface Props {
-  user: z.infer<typeof getLeaderboardSchema>["data"][number];
+  user: {
+    authorHandle: string;
+    authorName: string;
+    authorImage: string;
+    count: number;
+    rank: number;
+  };
 }
 
 export const CardLeaderboard = (props: Props) => {
   const { user } = props;
 
   return (
-    <Link href={`/leaderboard/${user.tweet_user_screen_name}`}>
+      <Link href={`/leaderboard/${user.authorHandle}`}>
       <div
-        key={user.tweet_user_screen_name}
+        key={user.authorHandle}
         className="px-4 py-6 my-4 bg-white border-b border-b-slate-200"
       >
         <div className="flex items-center justify-between">
@@ -32,17 +36,17 @@ export const CardLeaderboard = (props: Props) => {
                 {user.rank}
               </span>
             </div>
-            {user.tweet_profile_image_url ? (
+            {user.authorImage ? (
               <img
-                src={user.tweet_profile_image_url}
-                aria-label={user.tweet_profile_image_url}
+                src={user.authorImage}
+                aria-label={user.authorImage}
                 className="w-8 h-8 rounded-full mr-6"
               />
             ) : (
               <div className="w-12 h-12 rounded-full bg-gray-200" />
             )}
             <h3 className="text-lg font-bold">
-              @{user.tweet_user_screen_name}
+              @{user.authorHandle}
             </h3>
           </div>
           <p className="text-xs text-gray-500">{user.count} tweets</p>

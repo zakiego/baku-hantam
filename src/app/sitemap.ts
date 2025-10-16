@@ -2,7 +2,7 @@ import { restClient } from "@/lib/api/client";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const topics = await restClient.getAllTopics();
+  const topics = await restClient.getDebates();
   const listUser = await restClient.getLeaderboard();
 
   if (topics.status !== 200 || listUser.status !== 200) {
@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const topicPaths = topics.body.data.map((item) => `/topic/${item.slug}`);
   const userPaths = listUser.body.data.map(
-    (item) => `/leaderboard/${item.tweetUserScreenName}`,
+    (item) => `/leaderboard/${item.authorHandle}`,
   );
 
   const paths = ["/", "/leaderboard", ...userPaths, ...topicPaths];

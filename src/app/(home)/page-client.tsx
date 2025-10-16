@@ -12,8 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { getAllTopicsSchema } from "@/lib/api/contract";
-import type { ResponseGetDebates } from "@/lib/api/contractv2";
+import type { ResponseGetDebates } from "@/lib/api/contract";
 import { ListOrderedIcon } from "lucide-react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
@@ -23,8 +22,7 @@ import type { z } from "zod";
 export const dynamic = "force-static";
 
 interface Props {
-  data: z.infer<typeof getAllTopicsSchema>["data"];
-  datav2: ResponseGetDebates;
+  data: ResponseGetDebates;
 }
 
 const sortOptions = [
@@ -35,7 +33,7 @@ const sortOptions = [
 
 const sortOptionsMap = sortOptions.map((option) => option.value);
 
-export default function PageClientHome({ data, datav2 }: Props) {
+export default function PageClientHome({ data }: Props) {
   // const [topicQuery, setTopicQuery] = useQueryState("topic");
   // const [sortQuery, setSortQuery] = useQueryState("sort");
 
@@ -104,7 +102,7 @@ export default function PageClientHome({ data, datav2 }: Props) {
           </DropdownMenu> */}
         </div>
 
-        {datav2?.data.map((debate) => {
+        {data?.data.map((debate) => {
           return (
             <Link key={debate.id} href={`/debate/${debate.slug}`}>
               <div className="px-4 py-8 my-4 bg-white border-b border-b-slate-200 cursor-pointer">

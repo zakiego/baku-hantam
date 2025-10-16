@@ -16,9 +16,9 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const resp = await restClient.getTopicBySlug({
+  const resp = await restClient.getDebateDetails({
     params: {
-      slug: params.slug,
+      idOrSlug: params.slug,
     },
   });
 
@@ -26,38 +26,43 @@ export async function generateMetadata({ params }: Props) {
     return notFound();
   }
 
-  const { data: topic } = resp.body;
-
   return {
-    title: `${topic.title}`,
-    description: topic.description,
+    title: `${resp.body.data.titleId}`,
+    description: resp.body.data.descriptionId,
   };
 }
 
 export async function generateStaticParams() {
-  const resp = await restClient.getAllTopics();
+  const resp = await restClient.getDebates();
 
   if (resp.status !== 200) {
-    throw new Error("Failed to fetch all topics");
+    throw new Error("Failed to fetch all debates");
   }
 
-  return resp.body.data.map((item) => ({
-    slug: item.slug,
+  return resp.body.data.map((debate) => ({
+    slug: debate.slug,
   }));
 }
 
 export default async function Page({ params }: Props) {
-  const resp = await restClient.getTopicBySlug({
+  const resp = await restClient.getDebateTweets({
     params: {
-      slug: params.slug,
+      idOrSlug: params.slug,
     },
   });
 
-  if (resp.status !== 200) {
+  const respDebate = await restClient.getDebateDetails({
+    params: {
+      idOrSlug: params.slug,
+    },
+  });
+
+  if (resp.status !== 200 || respDebate.status !== 200) {
     return notFound();
   }
 
-  const { data: topic } = resp.body;
+  const { data: tweets } = resp.body;
+  const { data: debate } = respDebate.body;
 
   return (
     <Container className="py-10 relative">
@@ -65,11 +70,11 @@ export default async function Page({ params }: Props) {
 
       <div>
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-balance">
-          {topic.title}
+          {debate.titleId}
         </h2>
 
         <p className="mt-2 leading-8 text-gray-600 text-balance text-sm">
-          {topic.description}
+          {debate.descriptionId}
         </p>
       </div>
 
@@ -78,8 +83,8 @@ export default async function Page({ params }: Props) {
       </div>
 
       <div>
-        {topic.tweets.map((tweet) => {
-          return <TweetCard key={tweet.id} tweet={tweet.tweet_data} />;
+        {tweets.map((tweet) => {
+          return <TweetCard key={tweet.id} tweetId={tweet.tweetId} />;
         })}
       </div>
     </Container>

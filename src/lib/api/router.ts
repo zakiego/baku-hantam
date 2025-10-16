@@ -1,4 +1,4 @@
-import { restContract } from "@/lib/api/contract";
+import { restContract } from "@/lib/api/contractLegacy";
 import { createApiUrl } from "@/lib/utils";
 import { createNextRoute } from "@ts-rest/next";
 

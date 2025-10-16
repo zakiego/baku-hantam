@@ -1,5 +1,5 @@
 import PageClientLeaderbord from "@/app/leaderboard/page-client";
-import { restClient, restClientV2 } from "@/lib/api/client";
+import { restClient } from "@/lib/api/client";
 import { REVALIDATE_TIME } from "@/lib/const";
 import type { Metadata } from "next";
 
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const leaderboardRespV2 = await restClientV2.getLeaderboard();
-  const statsRespV2 = await restClientV2.getStats();
+  const leaderboardRespV2 = await restClient.getLeaderboard();
+  const statsRespV2 = await restClient.getStats();
 
   if (leaderboardRespV2.status !== 200 || statsRespV2.status !== 200) {
     throw new Error("Failed to fetch leaderboard data");

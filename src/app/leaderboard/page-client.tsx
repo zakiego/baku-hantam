@@ -7,8 +7,8 @@ import type { z } from "zod";
 
 import { SearchInput } from "@/components/input";
 import { Stats } from "@/components/stats";
-import type { ResponseGetLeaderboard } from "@/lib/api/contractv2";
-import type { ResponseGetStats } from "@/lib/api/contractv2";
+import type { ResponseGetLeaderboard } from "@/lib/api/contract";
+import type { ResponseGetStats } from "@/lib/api/contract";
 import { parseAsString, useQueryState } from "nuqs";
 import { useMemo } from "react";
 
@@ -57,10 +57,9 @@ export default function PageClientLeaderbord({ datav2, stats }: Props) {
           <CardLeaderboard
             key={item.authorHandle}
             user={{
-              tweet_user_id: item.authorHandle,
-              tweet_profile_image_url: item.authorImage,
-              tweet_user_name: item.authorName,
-              tweet_user_screen_name: item.authorHandle,
+              authorHandle: item.authorHandle,
+              authorName: item.authorName,
+              authorImage: item.authorImage ?? "",
               count: item.count,
               rank: item.rank,
             }}

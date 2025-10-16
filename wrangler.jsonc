@@ -19,7 +19,6 @@
     }
   ],
   "vars": {
-    "NEXT_PUBLIC_API_URL": "https://bakuhantam-api.zakiego.com",
-    "NEXT_PUBLIC_V2_API_URL": "https://bakuhantam-api.zakiego.com"
+    "NEXT_PUBLIC_API_URL": "https://bakuhantam-api.zakiego.com"
   }
 }
