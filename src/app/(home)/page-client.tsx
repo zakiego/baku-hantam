@@ -17,6 +17,8 @@ import { ListOrderedIcon } from "lucide-react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useMemo } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import type { z } from "zod";
 
 export const dynamic = "force-static";
@@ -103,9 +105,15 @@ export default function PageClientHome({ data }: Props) {
         </div>
 
         {data?.data.map((debate) => {
+          // Get the appropriate summary based on language
+          const summary =
+            debate.lang === "id" ? debate.summaryId : debate.summary;
+          // Hide if summary is just the placeholder "summary_id"
+          const shouldShowSummary = summary && summary !== "summary_id";
+
           return (
             <Link key={debate.id} href={`/debate/${debate.slug}`}>
-              <div className="px-4 py-8 my-4 bg-white border-b border-b-slate-200 cursor-pointer">
+              <div className="px-4 py-8 my-4 bg-white border-b border-b-slate-200 cursor-pointer hover:bg-gray-50 transition-colors">
                 <div className="flex -space-x-2 overflow-hidden">
                   {debate.avatars?.map((avatar) => (
                     <img
@@ -121,9 +129,27 @@ export default function PageClientHome({ data }: Props) {
                   ))}
                 </div>
                 <h1 className="text-lg font-bold mt-2">{debate.title}</h1>
-                <p className="mt-2 text-xs text-gray-500">
-                  {debate.description}
-                </p>
+                {debate.description && (
+                  <p className="mt-2 text-xs text-gray-500">
+                    {debate.description}
+                  </p>
+                )}
+
+                {/* AI Summary Preview */}
+                {shouldShowSummary && (
+                  <div className="mt-3 p-3 bg-blue-50 border-l-2 border-blue-400 rounded-r text-xs text-gray-700">
+                    <div className="flex items-start gap-1">
+                      <span className="text-blue-600 font-semibold shrink-0">
+                        📝 AI:
+                      </span>
+                      <div className="line-clamp-3 prose prose-sm max-w-none [&>*]:my-0 [&>*]:leading-tight">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {summary}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </Link>
           );
