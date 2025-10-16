@@ -10,7 +10,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 300;
 export const dynamicParams = true;
 
 interface Props {

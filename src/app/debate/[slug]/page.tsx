@@ -6,7 +6,7 @@ import { REVALIDATE_TIME, SITE_CONFIG } from "@/lib/const";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 300;
 export const dynamicParams = true;
 
 interface Props {
