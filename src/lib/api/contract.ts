@@ -15,21 +15,17 @@ const getDebatesSchema = z.object({
   data: z.array(
     z.object({
       id: z.string(),
-      titleEn: z.string(),
-      titleId: z.string(),
+      title: z.string(),
       slug: z.string(),
-      descriptionEn: z.string().nullable(),
-      descriptionId: z.string().nullable(),
-      lang: z.string(),
+      description: z.string().nullable(),
+      lang: z.enum(["id", "en"]),
       createdAt: z.string(),
       updatedAt: z.string(),
-      avatars: z
-        .array(
-          z.object({
-            image: z.string(),
-          }),
-        )
-        .nullable(),
+      avatars: z.array(
+        z.object({
+          image: z.string(),
+        }),
+      ),
     }),
   ),
   page: z.number(),
@@ -67,14 +63,17 @@ const getParticipantSchema = z.object({
 const getDebateDetailsSchema = z.object({
   data: z.object({
     id: z.string(),
-    titleEn: z.string(),
-    titleId: z.string(),
+    title: z.string(),
     slug: z.string(),
-    descriptionEn: z.string().nullable(),
-    descriptionId: z.string().nullable(),
-    lang: z.string(),
+    description: z.string().nullable(),
+    lang: z.enum(["id", "en"]),
     createdAt: z.string(),
     updatedAt: z.string(),
+    avatars: z.array(
+      z.object({
+        image: z.string(),
+      }),
+    ),
     participants: z.array(getParticipantSchema),
     dateRange: z
       .object({
@@ -111,10 +110,10 @@ const getProfileSchema = z.object({
     profile: z.object({
       authorHandle: z.string(),
       authorName: z.string(),
-      authorImage: z.string(),
+      authorImage: z.string().nullable(),
       tweetCount: z.number(),
-      firstTweetedAt: z.string(),
-      lastTweetedAt: z.string(),
+      firstTweetedAt: z.string().nullable(),
+      lastTweetedAt: z.string().nullable(),
       debateCount: z.number(),
       rank: z.number(),
     }),
@@ -122,9 +121,8 @@ const getProfileSchema = z.object({
       z.object({
         id: z.string(),
         slug: z.string(),
-        titleEn: z.string(),
-        titleId: z.string(),
-        lang: z.string(),
+        title: z.string(),
+        lang: z.enum(["id", "en"]),
         tweetCount: z.number(),
         lastTweetedAt: z.string(),
       }),
@@ -138,18 +136,6 @@ const getProfileSchema = z.object({
   }),
 });
 
-const getCategorySchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  lang: z.string(),
-  createdAt: z.string(),
-});
-
-const getCategoriesSchema = z.object({
-  data: z.array(getCategorySchema),
-});
-
 export const restContract = c.router({
   getDebates: {
     method: "GET",
@@ -157,9 +143,8 @@ export const restContract = c.router({
     query: z.object({
       q: z.string().optional(),
       lang: z.enum(["id", "en"]).optional(),
-      category: z.string().optional(),
       page: z.number().optional().default(1),
-      limit: z.number().optional().default(1000),
+      limit: z.number().optional().default(20),
     }),
     responses: {
       200: getDebatesSchema,
@@ -232,17 +217,6 @@ export const restContract = c.router({
     },
     summary: "Get debate leaderboard",
   },
-  listCategories: {
-    method: "GET",
-    path: "/categories",
-    query: z.object({
-      lang: z.enum(["id", "en"]).optional(),
-    }),
-    responses: {
-      200: getCategoriesSchema,
-    },
-    summary: "List categories",
-  },
   getStats: {
     method: "GET",
     path: "/stats",
@@ -253,7 +227,7 @@ export const restContract = c.router({
   },
   getProfile: {
     method: "GET",
-    path: "/profile/:authorHandle",
+    path: "/profile/:handle",
     query: z.object({
       lang: z.string().optional(),
       since: z.string().optional(),
@@ -264,7 +238,7 @@ export const restContract = c.router({
     responses: {
       200: getProfileSchema,
     },
-    summary: "Get user profile by screen name",
+    summary: "Get user profile by handle",
   },
 });
 
@@ -295,11 +269,6 @@ export type ResponseGetLeaderboard = ClientInferResponseBody<
 
 export type ResponseGetDebateLeaderboard = ClientInferResponseBody<
   typeof restContract.getDebateLeaderboard,
-  200
->;
-
-export type ResponseListCategories = ClientInferResponseBody<
-  typeof restContract.listCategories,
   200
 >;
 
