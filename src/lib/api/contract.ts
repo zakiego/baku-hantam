@@ -169,6 +169,7 @@ export const restContract = c.router({
       until: z.string().optional(),
       page: z.number().optional().default(1),
       limit: z.number().optional().default(50),
+      sort: z.enum(["asc", "desc"]).optional(),
     }),
     responses: {
       200: getTweetsListSchema,

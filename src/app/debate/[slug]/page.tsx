@@ -53,6 +53,9 @@ export default async function Page(props: Props) {
     params: {
       idOrSlug: params.slug,
     },
+    query: {
+      sort: "asc",
+    },
   });
 
   const respDebate = await restClient.getDebateDetails({
