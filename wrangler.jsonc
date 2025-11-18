@@ -16,6 +16,10 @@
     {
       "custom_domain": true,
       "pattern": "bakuhantam-v2.zakiego.com"
+    },
+    {
+      "custom_domain": true,
+      "pattern": "bakuhantam.zakiego.com"
     }
   ],
   "vars": {
