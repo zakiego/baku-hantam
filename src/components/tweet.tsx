@@ -1,32 +1,32 @@
 import { unstable_cache } from "next/cache";
+import { Suspense } from "react";
 import {
-  TweetSkeleton,
   EmbeddedTweet,
   TweetNotFound,
+  TweetSkeleton,
   enrichTweet,
 } from "react-tweet";
 import {
-  type TwitterComponents,
+  QuotedTweet,
+  TweetActions,
+  TweetBody,
   TweetContainer,
   TweetHeader,
   TweetInReplyTo,
-  TweetBody,
-  TweetMedia,
   TweetInfo,
-  TweetActions,
-  QuotedTweet,
+  TweetMedia,
+  type TwitterComponents,
 } from "react-tweet";
-import { Suspense } from "react";
 import type { Tweet } from "react-tweet/api";
-// import { getTweetWithCache } from "@/lib/utils";
 
-// const getTweet = unstable_cache(
-//   async (id: string) => getTweetWithCache(id),
-//   ["tweet"],
-//   {
-//     revalidate: 3600 * 24, // 24 hours
-//   },
-// );
+const getTweet = async (id: string) => {
+  const response = await fetch(
+    `https://bakuhantam-cache.zakiego.com/api/tweet/${id}?mode=image`,
+  );
+
+  const { data } = await response.json();
+  return data as Promise<Tweet>;
+};
 
 // const getTweet = getTweetWithCache;
 
@@ -50,9 +50,17 @@ import type { Tweet } from "react-tweet/api";
 //   );
 // };
 
-const TweetWrapper = async ({ tweet }: { tweet: Tweet | null }) => {
+const TweetWrapper = async ({
+  tweet,
+}: { tweet: Promise<Tweet> | Tweet | null }) => {
   try {
-    return tweet ? <EmbeddedTweet tweet={tweet} /> : <TweetNotFound />;
+    const resolvedTweet = await tweet;
+
+    return resolvedTweet ? (
+      <EmbeddedTweet tweet={resolvedTweet} />
+    ) : (
+      <TweetNotFound />
+    );
     // return tweet ? <MyTweet tweet={tweet} /> : <TweetNotFound />;
   } catch (error) {
     console.error(error);
@@ -60,11 +68,11 @@ const TweetWrapper = async ({ tweet }: { tweet: Tweet | null }) => {
   }
 };
 
-export const TweetCard = ({ tweet }: { tweet: Tweet }) => {
+export const TweetCard = ({ tweetId }: { tweetId: string }) => {
   return (
     <Suspense fallback={<TweetSkeleton />}>
       <div className="my-class">
-        <TweetWrapper tweet={tweet} />
+        <TweetWrapper tweet={getTweet(tweetId)} />
       </div>
     </Suspense>
   );

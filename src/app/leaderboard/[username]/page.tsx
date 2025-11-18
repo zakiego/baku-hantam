@@ -1,26 +1,29 @@
 import { BackButton } from "@/components/button";
 import { Container } from "@/components/container";
+import { MedalIcon, TrophyIcon } from "@/components/icon";
 import { Tag } from "@/components/tag";
 import { TweetCard } from "@/components/tweet";
 import { restClient } from "@/lib/api/client";
+import type { ResponseGetProfile } from "@/lib/api/contract";
 import { REVALIDATE_TIME } from "@/lib/const";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 300;
 export const dynamicParams = true;
 
 interface Props {
-  params: {
+  params: Promise<{
     username: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: Props) {
-  const resp = await restClient.getUserByScreenName({
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
+  const resp = await restClient.getProfile({
     params: {
-      screenName: params.username,
+      handle: params.username,
     },
   });
 
@@ -28,7 +31,7 @@ export async function generateMetadata({ params }: Props) {
     throw new Error("User not found");
   }
 
-  const screenName = resp.body.data.profile.tweet_user_screen_name;
+  const screenName = resp.body.data.profile.authorHandle;
 
   return {
     title: `@${screenName}`,
@@ -44,14 +47,15 @@ export async function generateStaticParams() {
   }
 
   return resp.body.data.map((item) => ({
-    username: item.tweet_user_screen_name,
+    username: item.authorHandle,
   }));
 }
 
-export default async function Page({ params }: Props) {
-  const resp = await restClient.getUserByScreenName({
+export default async function Page(props: Props) {
+  const params = await props.params;
+  const resp = await restClient.getProfile({
     params: {
-      screenName: params.username,
+      handle: params.username,
     },
   });
 
@@ -59,7 +63,7 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  const { tweets, topics, profile } = resp.body.data;
+  const { tweets, debates, profile } = resp.body.data;
 
   return (
     <Container className="py-10 relative">
@@ -67,28 +71,42 @@ export default async function Page({ params }: Props) {
 
       <div>
         <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-balance">
-          <a href={`https://twitter.com/${profile.tweet_user_screen_name}`}>
-            @{profile.tweet_user_screen_name}
+          <a href={`https://twitter.com/${profile.authorHandle}`}>
+            @{profile.authorHandle}
           </a>
         </h2>
+        <div className="mt-2 flex items-center gap-2">
+          {profile.rank === 1 && (
+            <TrophyIcon className="w-5 h-5 text-yellow-500" />
+          )}
+          {profile.rank === 2 && (
+            <MedalIcon className="w-5 h-5 text-gray-400" />
+          )}
+          {profile.rank === 3 && (
+            <MedalIcon className="w-5 h-5 text-amber-700" />
+          )}
+          <p className="text-sm text-gray-500">Rank: {profile.rank}</p>
+        </div>
       </div>
 
-      <p className="mt-2 text-sm text-gray-500">{tweets.length} tweets</p>
+      <p className="mt-2 text-sm text-gray-500">{tweets.data.length} tweets</p>
 
       <h3 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl text-balance">
-        Topic
+        Debates
       </h3>
       <div className="mt-4 space-x-2">
-        {topics.map((topic) => (
-          <Link key={topic.id} href={`/topic/${topic.slug}`}>
-            <Tag>{topic.slug}</Tag>
+        {debates.map((debate: ResponseGetProfile["data"]["debates"][0]) => (
+          <Link key={debate.id} href={`/debate/${debate.slug}`}>
+            <Tag>{debate.slug}</Tag>
           </Link>
         ))}
       </div>
 
-      {tweets.map((item) => (
-        <TweetCard key={item.id} tweet={item.tweet_data} />
-      ))}
+      {tweets.data.map(
+        (item: ResponseGetProfile["data"]["tweets"]["data"][0]) => (
+          <TweetCard key={item.id} tweetId={item.tweetId} />
+        ),
+      )}
     </Container>
   );
 }

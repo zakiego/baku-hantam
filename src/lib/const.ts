@@ -6,6 +6,4 @@ export const SITE_CONFIG = {
   DELETE_FORM: "https://baku-hantam.vercel.app/delete",
 } as const;
 
-const FIVE_MINUTES_IN_SECONDS = 60 * 5;
-
-export const REVALIDATE_TIME = FIVE_MINUTES_IN_SECONDS;
+export const REVALIDATE_TIME = 300;

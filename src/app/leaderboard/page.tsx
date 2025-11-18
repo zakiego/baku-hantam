@@ -4,7 +4,7 @@ import { REVALIDATE_TIME } from "@/lib/const";
 import type { Metadata } from "next";
 
 export const dynamic = "force-static";
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Leaderboard",
@@ -20,8 +20,10 @@ export default async function Page() {
     throw new Error("Failed to fetch leaderboard data");
   }
 
-  const { data: stats } = statsResp.body;
-  const { data } = leaderboardResp.body;
-
-  return <PageClientLeaderbord data={data} stats={stats} />;
+  return (
+    <PageClientLeaderbord
+      datav2={leaderboardResp.body}
+      stats={statsResp.body.data}
+    />
+  );
 }

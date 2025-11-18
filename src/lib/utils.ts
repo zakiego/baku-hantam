@@ -1,5 +1,6 @@
 import { ENV } from "@/lib/env";
 import { type ClassValue, clsx } from "clsx";
+import { getTweet } from "react-tweet/api";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
